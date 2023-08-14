@@ -53,6 +53,9 @@
                 <div class="text-center mt-4">
                     <button type="button" class="btn btn-primary waves-effect waves-light">Send Files</button>
                 </div>
+                <div class="text-center mt-4">
+                    <button type="button"  id="btn03" onClick="myFun(this)" class="btn btn-primary waves-effect waves-light"> Dowload Files</button>
+                </div>
             </div>
         </div>
     </div> <!-- end col -->
@@ -62,5 +65,15 @@
 
 <!-- Plugins js -->
 <script src="public/assets/libs/dropzone/min/dropzone.min.js"></script>
+<script>
+    function myFun(trigger_element)
+    {
+        // Get your element:
+        // var clicked_element = trigger_element
+  
+        // alert(clicked_element.id + "Was clicked!!!");
+        alert( "Was clicked!!!");
+    }
+  </script>
 
 <%- contentFor('BottomJs') %>

@@ -1,0 +1,366 @@
+<%- contentFor('HeaderCss') %>
+    <!-- DataTables -->
+    <!-- <link href="public/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" /> -->
+    <!-- <link href="public/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" /> -->
+
+    <!-- Responsive datatable examples -->
+    <!-- <link href="public/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" /> -->
+    <!-- <link href="public/assets/libs/datatables.net-editor/css/editor.dataTables.min.css" rel="stylesheet" />
+    <link href="public/assets/libs/datatables.net-editor/css/dataTables.dateTime.min.css" rel="stylesheet" /> -->
+    <link href="public/assets/libs/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+    <!-- nuevo -->
+
+    <%- contentFor('breadcrumb') %>
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">Users</h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Configurations</a></li>
+                            <li class="breadcrumb-item active">Usuarios</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <%- contentFor('body') %>
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Alta de usuarios</h4>
+                            <p class="card-title-desc">Ingrese información.</p>
+                            <form class="needs-validation" novalidate>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="validationCustom01">Nombre</label>
+                                            <input type="text" class="form-control" id="validationCustom01"
+                                                placeholder="Nombre" value="" required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="validationCustom02">Apellido Paterno</label>
+                                            <input type="text" class="form-control" id="validationCustom02"
+                                                placeholder="Apellido Paterno" value="" required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-3">
+                                            <label class="form-label"> Apellido Materno</label>
+                                            <input type="text" class="form-control" id="validationCustom03"
+                                                placeholder="Apellido Materno" value="" required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="validationCustom02">Usuario</label>
+                                            <input type="text" class="form-control" id="validationCustom04"
+                                                placeholder="Usuario" value="" required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="validationCustom03">Password</label>
+                                            <input type="password" class="form-control" id="validationCustom05"
+                                                placeholder="Password" required>
+                                            <div class="invalid-feedback">
+                                                Please provide a Password.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="validationCustom04">Password</label>
+                                            <input type="password" class="form-control" id="validationCustom06"
+                                                placeholder="Password" required>
+                                            <div class="invalid-Password">
+                                                Please provide a valid Password.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="validationCustom05">Correo</label>
+                                            <input type="email" class="form-control" id="validationCustom07"
+                                                placeholder="Correo" required>
+                                            <div class="invalid-feedback">
+                                                Please provide a valid email.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- tabla row -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+
+                                                <h4 class="card-title">Permisos</h4>
+                                                <button class = "btn-secondary  add-new" id="addRow">Agregar permiso</button>
+                                                <p class="card-title-desc ">seleccione la subsidiaria y acceso al tipo de
+                                                    cfdi.</p>
+
+                                                <div class="table-responsive">
+                                                    <!-- <table id="permissiontbl" class="display">  -->
+                                                    <table id="permissiontbl" class="table">
+                                                        <!-- class="table table-editable table-nowrap align-middle table-edits"> -->
+                                                        <thead>
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>Subsidiaria</th>
+                                                                <th>Tipo de CFDI</th>
+                                                                <th>Acciones</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbody">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div> <!-- end col -->
+                                </div> <!-- end row -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="invalidCheck"
+                                                    required>
+                                                <label class="form-check-label" for="invalidCheck">Agree to terms and
+                                                    conditions</label>
+                                                <div class="invalid-feedback">
+                                                    You must agree before submitting.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end card -->
+                </div> <!-- end col -->
+
+            </div>
+            <!-- end row -->
+
+
+            <!-- Modal -->
+            <!-- <div class="modal fade" id="composemodal" tabindex="-1" role="dialog" aria-labelledby="composemodalTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="composemodalTitle">New Message</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="To">
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Subject">
+                                </div>
+                                <div class="mb-3">
+                                    <form method="post">
+                                        <textarea id="email-editor" name="area"></textarea>
+                                    </form>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Send <i
+                                    class="fab fa-telegram-plane ms-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <%- contentFor('FooterJs') %>
+
+                <script type="text/javascript">
+                    var $table = $('#permissiontbl')
+
+                    $(function () {
+
+                        var data = [
+                            {
+                                'id': 0,
+                                'subsidiaria': 'empresa 0',
+                                'tipoCFDI': 'Egres',
+                                // 'Gender': 'F',
+                                // 'CD': '0'
+                            },
+                            {
+                                'id': 1,
+                                'subsidiaria': 'empresa 1',
+                                'tipoCFDI': 'Ingreso',
+                                // 'Gender': 'G',
+                                // 'CD': '0'
+                            },
+                            {
+                                'id': 2,
+                                'subsidiaria': 'empresa 2',
+                                'tipoCFDI': 'Nomina',
+                                // 'tipoCFDI': 'F',
+                                // 'CD': '$0'
+                            },
+                            // {
+                            //     'id': 3,
+                            //     'subsidiaria': 'Item 3',
+                            //     'Age': '0',
+                            //     'Gender': 'M',
+                            //     'CD': '0'
+                            // },
+                            // {
+                            //     'id': 4,
+                            //     'subsidiaria': 'Item 4',
+                            //     'Age': '$0',
+                            //     'Gender': 'F',
+                            //     'CD': '0'
+                            // },
+                            // {
+                            //     'id': 5,
+                            //     'subsidiaria': 'Item 5',
+                            //     'Age': '5',
+                            //     'Gender': 'M',
+                            //     'CD': '0'
+                            // }
+                        ]
+                        // $table.bootstrapTable({ data: data })
+                        var t = "";
+                        for (var i = 0; i < data.length; i++) {
+                            // console.log(JSON.stringify(data[i]));
+                            var tr = "<tr>";
+                            tr += "<td>" + data[i].id + "</td>";
+                            tr += "<td>" + data[i].subsidiaria + "</td>";
+                            tr += "<td>" + data[i].tipoCFDI + "</td>";
+                            // tr += "<td>" + data[i][3] + "</td>";
+                            // tr += "<td>" + '   <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>';
+                            // tr += ' <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>';
+                            tr +="<td>" +'<a class="btn btn-outline-secondary btn-sm add" data-toggle="tooltip"  title="Ok"> <i class="fas fa-check"></i> </a>';
+                            tr +='<a class="btn btn-outline-secondary btn-sm edit"  title="Edit"> <i class="fas fa-pencil-alt"></i> </a>';
+                            tr +='<a class="btn btn-outline-secondary btn-sm delete"  title="Delete"> <i class="fas fa-trash"></i> </a>';
+                            tr +="</td>" 
+                            // tr += '<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>"';
+                            tr += "</tr>";
+                            t += tr;
+                        }
+                        document.getElementById("permissiontbl").innerHTML += t;
+                    })
+
+                    $(document).ready(function () {
+                        $('[data-toggle="tooltip"]').tooltip();
+                        // var actions = $("table td:last-child").html();
+                        var actions ='<a class="btn btn-outline-secondary btn-sm add" data-toggle="tooltip"  title="Ok"> <i class="fas fa-check"></i> </a>';
+                            actions +='<a class="btn btn-outline-secondary btn-sm edit"  title="Edit"> <i class="fas fa-pencil-alt"></i> </a>';
+                            actions +='<a class="btn btn-outline-secondary btn-sm delete"  title="Delete"> <i class="fas fa-trash"></i> </a>';
+                            // actions +=
+
+                        // Append table with add row form on add new button click
+                        $(".add-new").click(function () {
+                            $(this).attr("disabled", "disabled");
+                            console.log("Add new")
+                            var index = $("table tbody tr:last-child").index();
+                            console.log("Add new index:"+index)
+                            var row = '<tr>' +
+                                '<td><input type="text" class="form-control" name="id" id="id-n"></td>' +
+                                '<td><input type="text" class="form-control" name="subsidiary" id="_subsidiary-n"></td>' +
+                                '<td><input type="text" class="form-control" name="tipocfdi" id="tipocfdi-n"></td>' +
+                                '<td>' + actions + '</td>' +
+                                '</tr>';
+                            console.log("Add new row:"+row)
+                            $("table tr:last").after(row);		
+                            // $("table").find('tbody').append(row);
+		                    $("table tbody tr").eq(index+1).find(".add, .edit ").toggle();
+
+                            $('[data-toggle="tooltip"]').tooltip();
+                        });
+                        // Add row on add button click
+                        $(document).on("click", ".add", function () {
+                            var empty = false;
+                            var input = $(this).parents("tr").find('input[type="text"]');
+                            input.each(function () {
+                                if (!$(this).val()) {
+                                    $(this).addClass("error");
+                                    empty = true;
+                                } else {
+                                    $(this).removeClass("error");
+                                }
+                            });
+                            $(this).parents("tr").find(".error").first().focus();
+                            var index =  $(this).index();
+                            if (!empty) {
+                                input.each(function () {
+                                    $(this).parent("td").html($(this).val());
+                                });
+                                // $(this).parents("tr").find(" .add, .delete,  .edit").toggle();
+                                // if (index == -0) { 
+                                    $(this).parents("tr").find(".add, .edit").toggle();
+                                // }
+                                $(".add-new").removeAttr("disabled");
+                            }
+                        });
+                        // Edit row on edit button click
+                        $(document).on("click", ".edit", function () {
+                            $(this).parents("tr").find("td:not(:last-child)").each(function () {
+                                $(this).html('<input type="text" class="form-control" value="' + $(this).text() + '">');
+                            });
+                            $(this).parents("tr").find(".add, .edit ").toggle();
+                            $(".add-new").attr("disabled", "disabled");
+                        });
+                        // Delete row on delete button click
+                        $(document).on("click", ".delete", function () {
+                            $(this).parents("tr").remove();
+                            $(".add-new").removeAttr("disabled");
+                        });
+                    });
+                </script>
+
+                <style>
+                    table.table td .add {
+                        display: none;
+                    }
+                </style>
+
+                <%- contentFor('BottomJs') %>
+
+                    <!-- Table  plugin -->
+                    <script src="public/assets/libs/bootstrap-table/bootstrap-table.js"></script>
+                    <script src="public/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>

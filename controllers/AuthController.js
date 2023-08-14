@@ -1,5 +1,13 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+/**0 */
+var passport = require('passport');
+ 
+// User model
+var User = require('../models/User');
+// Get our authenticate module
+var authenticate = require('./authenticate');
+//**fin */
 var urlencodeParser = bodyParser.urlencoded({ extended: false });
 
 var validator = require('express-validator');
@@ -20,27 +28,10 @@ let users = [
 	var passport = require('passport');
 	var config = require('../config');
 	// nuevo conecta a bd
-	var User = require('../models/User')
+	// var User = require('../models/User')
 	mongoose.Promise = global.Promise
 	mongoose.connect(config.mongoUrl)
 	var db = mongoose.connection
-	// db.on('error', function(err){
-	// console.log('connection error', err)
-	// })
-
-	// db.once('open', function(){
-	// console.log('Connection to DB successful')
-	// })
-
-
-
-
-	// var user = new User()
-	// user.save().then( () => {
-	// console.log('Everything went well');
-	// }).catch( (e) => {
-	// console.log('There was an error', e.message);
-	// });
 
 
 // Mock GET request to /users when param `searchText` is 'John'
@@ -115,19 +106,31 @@ module.exports = function (app) {
 	});
 
 	app.post('/post-login', urlencodeParser, async function (req, res) {
+		// app.post('/post-login', passport.authenticate('local'), async function (req, res) {
+		const foundUser = await User.findOne ({ "email" : req.body.email}).exec();
 
-		const foundUser = await User.findOne ({ "userName" : 'pedrito' });
+		const validUser = (foundUser.password == req.body.password);
+
 		console.log('usuario pedro:'+JSON.stringify(foundUser));
-		
-		const validUser = users.filter(usr => usr.email === req.body.email && usr.password === req.body.password);
-		console.log('valid user:'+JSON.stringify(validUser))
-		if (validUser['length'] === 1) {
 
+
+		// // nuevo
+		//      // Use passport to authenticate User
+ 		// 	// var token = authenticate.getToken({_id: req.user._id});
+		// 	console.log('token:'+token)
+		// //fin nue
+		
+		// const validUser = users.filter(usr => usr.email === req.body.email && usr.password === req.body.password);
+		// console.log('valid user:'+JSON.stringify(validUser))
+		// if (validUser['length'] === 1) {
+	if (validUser) {
 			// Assign value in session
 			sess = req.session;
-			console.log(req.session)
-			sess.user = validUser;
 
+			sess.user = validUser;
+			console.log(req.session);
+			sess.roles = foundUser.roles;
+			sess.token='mytoken-test'
 			res.redirect('/');
 
 		} else {

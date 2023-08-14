@@ -1,0 +1,277 @@
+<meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
+<%- contentFor('HeaderCss') %>
+
+<!-- DataTables -->
+<link href="public/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="public/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Responsive datatable examples -->
+<link href="public/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+<%- contentFor('breadcrumb') %>
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-3">CFDIs</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
+                    <li class="breadcrumb-item active">Datatables</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <form class="row row-cols-lg-auto gx-3 gy-2 align-items-center">
+        <div class="col-md-5">
+            <select class="form-select">
+                <option>Sel. Tipo</option>
+                <option>Ingreso</option>
+                <option>Pago</option>
+                <option>Nomina</option>
+                <option>Egreso</option>
+            </select>
+        </div>
+        <div class="col-md-5">
+            <select class="form-select">
+                <option>Sel. Emitido/Recibido</option>
+                <option>Emitidos</option>
+                <option>Recibidos</option>
+            </select>
+        </div>
+        <div class="col-md-5">
+            <select class="form-select">
+                <option>Sel.Estado</option>
+                <option>Vigente</option>
+                <option>Cancelado</option>
+            </select>
+        </div>
+                <div class="col-5">
+                    <!-- <label for="example-datetime-local-input" class="col-md-4 col-form-label">F. Inicial</label> -->
+                    <label class="visually-hidden" for="specificSizeInputName">Fecha Inicial</label>
+                    <div class="col-md-12">
+                        <input class="form-control" type="datetime-local" value="2019-08-19T13:45:00" id="fecha-ini">
+                    </div>
+                </div>
+                <div class="col-5">
+                    <!-- <label for="example-datetime-local-input" class="col-md-4 col-form-label">F. Fin</label> -->
+                    <label class="visually-hidden" for="specificSizeInputName">Fecha Fin</label>
+                    <div class="col-md-12">
+                        <input class="form-control" type="datetime-local" value="2019-08-19T13:45:00" id="fecha-fin">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <button type="submit" class="btn btn-primary w-md">Consultar</button>
+                </div>
+            </form>
+</div>
+<!-- end page title -->
+
+<%- contentFor('body') %>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <!-- <table border="0" cellspacing="5" cellpadding="5">
+                <tbody><tr>
+                    <td>Minimum date:</td>
+                    <td><input type="text" id="min" name="min"></td>
+                </tr>
+                <tr>
+                    <td>Maximum date:</td>
+                    <td><input type="text" id="max" name="max"></td>
+                </tr>
+            </tbody></table> -->
+            <!-- <div class="card-body"> -->
+
+                <!-- <h4 class="card-title">Default Datatable</h4>
+                <p class="card-title-desc">DataTables has most features enabled by
+                    default, so all you need to do to use it with your own tables is to call
+                    the construction function: <code>$().DataTable();</code>.
+                </p> -->
+
+                <!-- <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary**</th>
+                    </tr>
+                    </thead>
+                   
+                    <tbody> 
+
+                    </tbody>
+
+                </table> -->
+
+            <!-- </div> -->
+        </div>
+    </div> <!-- end col -->
+
+    
+</div> <!-- end row -->
+
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">CFDIs</h4>
+                <!-- <p class="card-title-desc">The Buttons extension for DataTables
+                    provides a common set of options, API methods and styling to display
+                    buttons on a page that will interact with a DataTable. The core library
+                    provides the based framework upon which plug-ins can built.
+                </p> -->
+                <!--<table id="datatable-srch" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">-->
+                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                    <tr>
+                        <th>UUID</th>
+                        <th>Descargado</th>
+                        <th>RFC Emisor</th>
+                        <th>Nombre Emisor</th>
+                        <th>RFCReceptor</th>
+                        <th>Nombre Receptor</th>
+                        <th>Fecha Emision</th>
+                        <th>Fecha Certificacion</th>
+                        <th>RFC PAC</th>
+                        <th>Total</th>
+                        <th>Tipo</th>
+                        <th>Estatuscancelacion</th>
+                        <th>Estado</th>
+                        <th>FechadeCancelacion</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% invoices.forEach(function(invoice) { %>
+                            <tr>
+                                <!-- <td scope="row">
+                                    <div class="form-check font-size-16">
+                                        <input type="checkbox" class="form-check-input" id="contacusercheck1">
+                                        <label class="form-check-label" for="contacusercheck1"></label>
+                                    </div>
+                                </td> -->
+                                <td>
+                                    <%-invoice.UUID  %>
+                                <td>
+                                    <%-  invoice.Descargado %>
+                                </td>
+                                <td>
+                                    <%-  invoice.RFCEmisor %>
+                                </td>
+                                <td>
+                                    <%-   invoice.NombreEmisor %>
+                                </td>
+                                <td>
+                                    <%-   invoice.RFCReceptor %>
+                                </td>
+                                <td>
+                                    <%-   invoice.NombreReceptor %>
+                                </td>
+                                <td>
+                                    <%-   invoice.FechaEmision %>
+                                </td>
+                                <td>
+                                    <%-   invoice.FechaCertificacion %>
+                                </td>
+                                <td>
+                                    <%-   invoice.RFCPAC %>
+                                </td>
+                                <td>
+                                    <%-   invoice.Total %>
+                                </td>
+                                <td>
+                                    <%-   invoice.Tipo %>
+                                </td>
+                                <td>
+                                    <%-   invoice.Estatuscancelacion %>
+                                </td>
+                                <td>
+                                    <%-   invoice.Estado %>
+                                </td>
+                                <td>
+                                    <%-   invoice.FechadeCancelacion %>
+                                </td>
+                                <!-- <td>
+                                    <ul class="list-inline mb-0">
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <a href="javascript:void(0);" class="px-2 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                        </li>
+                                        <li class="list-inline-item dropdown">
+                                            <a class="text-muted dropdown-toggle font-size-18 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                                                <i class="uil uil-ellipsis-v"></i>
+                                            </a>
+                                        
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </td> -->
+    
+                            </tr>
+                    <% }); %>  
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->
+
+<%- contentFor('FooterJs') %>
+
+<!-- Required datatable js -->
+<script src="public/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="public/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<!-- Buttons examples -->
+<script src="public/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="public/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+<script src="public/assets/libs/jszip/jszip.min.js"></script>
+<script src="public/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+<script src="public/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<script src="public/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="public/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="public/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+
+<!-- Responsive examples -->
+<script src="public/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="public/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+<!-- Datatable init js -->
+<script src="public/assets/js/pages/datatables.init.js"></script>
+<!-- <script src="public/assets/js/pages/jquery.dataTables.min.js"></script> -->
+<!-- <script src="public/assets/js/pages/datatable_datefilter.js"></script> -->
+<!--    Nuevo-->
+<script src ="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src ="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js">  </script>
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js">  </script>
+<script src ="https://cdn.datatables.net/datetime/1.4.1/js/dataTables.dateTime.min.js"></script>
+<script src ="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"></script>
+<script src ="https://cdn.datatables.net/datetime/1.4.1/css/dataTables.dateTime.min.css"></script>
+<script src ="https://cdn.datatables.net/searchbuilder/1.4.2/js/dataTables.searchBuilder.min.js"></script>
+<script src ="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
+<script src ="https://cdn.datatables.net/searchbuilder/1.4.2/css/searchBuilder.dataTables.min.css"></script>
+<script src ="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css"></script>
+
+
+<script type="text/javascript">
+
+</script>
+<%- contentFor('BottomJs') %>

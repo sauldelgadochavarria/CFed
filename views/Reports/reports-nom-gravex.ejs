@@ -1,0 +1,232 @@
+<%- contentFor('HeaderCss') %>
+
+<!-- DataTables -->
+<link href="public/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="public/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Responsive datatable examples -->
+<link href="public/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+<%- contentFor('breadcrumb') %>
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0">CFDIs</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
+                    <li class="breadcrumb-item active">Datatables</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<%- contentFor('body') %>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <!-- <div class="card-body"> -->
+
+                <!-- <h4 class="card-title">Default Datatable</h4>
+                <p class="card-title-desc">DataTables has most features enabled by
+                    default, so all you need to do to use it with your own tables is to call
+                    the construction function: <code>$().DataTable();</code>.
+                </p> -->
+
+                <!-- <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary**</th>
+                    </tr>
+                    </thead>
+                   
+                    <tbody> 
+
+                    </tbody>
+
+                </table> -->
+
+            <!-- </div> -->
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">CFDIs</h4>
+                <!-- <p class="card-title-desc">The Buttons extension for DataTables
+                    provides a common set of options, API methods and styling to display
+                    buttons on a page that will interact with a DataTable. The core library
+                    provides the based framework upon which plug-ins can built.
+                </p> -->
+
+                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                    <tr>
+                        <th> EstadoSAT </th>
+                        <th> FechaEmision </th>
+                        <th> Serie </th>
+                        <th> Folio </th>
+                        <th> UUID </th>
+                        <th> RFCReceptor </th>
+                        <th> EMPLEADO </th>
+                        <th> RegistroPatronal  </th>
+                        <th> TipoNomina  </th>
+                        <th> FechaPago  </th>
+                        <th> FechaInicialPago  </th>
+                        <th> FechaFinalPago  </th>
+                        <th> NumDiasPagados  </th>
+                        <th> TotalPercepciones  </th>
+                        <th> TotalDeducciones  </th>
+                        <th> TotalOtrosPagos  </th>
+                        <th> SubTotal </th>
+                        <th> Descuento </th>
+                        <th> ISRXML </th>
+                        <th> Total </th>
+                        <th> Regimen </th>
+                        <th> ArchivoXML </th>
+                        <th> Conceptos </th>
+                        <th> Version  </th>
+                        <th> Moneda </th>
+                        <th> ReceptorCurp  </th>
+                        <th> NumSeguridadSocial </th>
+                        <th> FechaInicioRelLabor </th>
+                        <th> Antigüedad  </th>
+                        <th> TipoContratoTipoContrato </th>
+                        <th> Sindicalizado  </th>
+                        <th> TipoJornada  </th>
+                        <th> TipoRegimen  </th>
+                        <th> NumEmpleado  </th>
+                        <th> Departamento  </th>
+                        <th> Pueston  </th>
+                        <th> PeriodicidadPago  </th>
+                        <th> Banco  </th>
+                        <th> CuentaBancaria  </th>
+                        <th> SalarioBaseCotApor  </th>
+                        <th> SalarioDiarioIntegrado  </th>
+                        <th> ClaveEntFed  </th>
+                        <th> TotalSueldosPer </th>
+                        <th> TotalSeparacionIndemnizacionPer </th>
+                        <th> TotalJubilacionPensionRetiroPer </th>
+                        <th> TotalGravadoPercepcion  </th>
+                        <th> TotalExentoPercepcion </th>
+                        <th> TotalOtrasDeducciones  </th>
+                        <th> TotalImpuestosRetenidosDed </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <% payrol.forEach(function(invoice) { %>
+                            <tr>
+                                <td> <%-invoice.EstadoSAT  %>  </td>
+                                <td> <%-invoice.FechaEmision %>  </td>
+                                <td> <%-invoice.Serie %>  </td>
+                                <td> <%-invoice.Folio %>  </td>
+                                <td> <%-invoice.UUID %>  </td>
+                                <td> <%-invoice.RFCReceptor %>  </td>
+                                <td> <%-invoice.EMPLEADO %>  </td>
+                                <td> <%-invoice.RegistroPatronal %>  </td>
+                                <td> <%-invoice.TipoNomina %>  </td>
+                                <td> <%-invoice.FechaPago %>  </td>
+                                <td> <%-invoice.FechaInicialPago %>  </td>
+                                <td> <%-invoice.FechaFinalPago %>  </td>
+                                <td> <%-invoice.NumDiasPagados %>  </td>
+                                <td> <%-invoice.TotalPercepciones %>  </td>
+                                <td> <%-invoice.TotalDeducciones %>  </td>
+                                <td> <%-invoice.TotalOtrosPagos %>  </td>
+                                <td> <%-invoice.SubTotal  %>  </td>
+                                <td> <%-invoice.Descuento %>  </td>
+                                <td> <%-invoice.ISRXML %>  </td>
+                                <td> <%-invoice.Total %>  </td>
+                                <td> <%-invoice.Regimen %>  </td>
+                                <td> <%-invoice.ArchivoXML %>  </td>
+                                <td> <%-invoice.Conceptos %>  </td>
+                                <td> <%-invoice.Version %>  </td>
+                                <td> <%-invoice.Moneda %>  </td>
+                                <td> <%-invoice.ReceptorCurp %>  </td>
+                                <td> <%-invoice.NumSeguridadSocial %>  </td>
+                                <td> <%-invoice.FechaInicioRelLabor %>  </td>
+                                <td> <%-invoice.Antigüedad %>  </td>
+                                <td> <%-invoice.TipoContratoTipoContrato %>  </td>
+                                <td> <%-invoice.Sindicalizado %>  </td>
+                                <td> <%-invoice.TipoJornada %>  </td>
+                                <td> <%-invoice.TipoRegimen %>  </td>
+                                <td> <%-invoice.NumEmpleado %>  </td>
+                                <td> <%-invoice.Departamento %>  </td>
+                                <td> <%-invoice.Pueston %>  </td>
+                                <td> <%-invoice.PeriodicidadPago %>  </td>
+                                <td> <%-invoice.Banco %>  </td>
+                                <td> <%-invoice.CuentaBancaria %>  </td>
+                                <td> <%-invoice.SalarioBaseCotApor %>  </td>
+                                <td> <%-invoice.SalarioDiarioIntegrado %>  </td>
+                                <td> <%-invoice.ClaveEntFed %>  </td>
+                                <td> <%-invoice.TotalSueldosPer %>  </td>
+                                <td> <%-invoice.TotalSeparacionIndemnizacionPer %>  </td>
+                                <td> <%-invoice.TotalJubilacionPensionRetiroPer %>  </td>
+                                <td> <%-invoice.TotalGravadoPercepcion %>  </td>
+                                <td> <%-invoice.TotalExentoPercepcion %>  </td>
+                                <td> <%-invoice.TotalOtrasDeducciones %>  </td>
+                                <td> <%-invoice.TotalImpuestosRetenidosDed %>  </td>                            </tr>
+                    <% }); %>  
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->
+
+<%- contentFor('FooterJs') %>
+
+<!-- Required datatable js -->
+<script src="public/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="public/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<!-- Buttons examples -->
+<script src="public/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="public/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+<script src="public/assets/libs/jszip/jszip.min.js"></script>
+<script src="public/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+<script src="public/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<script src="public/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="public/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="public/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+
+<!-- Responsive examples -->
+<script src="public/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="public/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+<!-- Datatable init js -->
+<script src="public/assets/js/pages/datatables.init.js"></script>
+
+
+<script type="text/javascript">
+    // table.destroy();
+    $(document).ready(function(){
+    //  table = $('#datatable-buttons').DataTable({
+    //     processing: true,
+    //     serverSide: true,
+    //     lengthChange: false,
+    //     buttons: ['copy', 'excel', 'pdf', 'colvis']
+    // });
+    table = $('#datatable-buttons').DataTable();
+
+    table.buttons().container()
+        .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+        
+        $(".dataTables_length select").addClass('form-select form-select-sm');
+    });
+</script>
+<%- contentFor('BottomJs') %>

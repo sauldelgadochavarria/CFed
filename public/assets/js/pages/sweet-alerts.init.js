@@ -1,8 +1,8 @@
 /*
-Template Name: Minible - Admin & Dashboard Template
-Author: Themesbrand
-Website: https://themesbrand.com/
-Contact: themesbrand@gmail.com
+Template Name:CFDI FED  Admin-Dashboard
+Author: mxraymon
+Website: https://raymon.com/
+Contact: raymon@gmail.com
 File: Sweetalert Js File
 */
 
@@ -148,7 +148,7 @@ File: Sweetalert Js File
                 title: '<i>HTML</i> <u>example</u>',
                 icon: 'info',
                 html: 'You can use <b>bold text</b>, ' +
-                '<a href="//Themesbrand.in/">links</a> ' +
+                '<a href="//www.cfdiprocess.mx/">links</a> ' +
                 'and other HTML tags',
                 showCloseButton: true,
                 showCancelButton: true,

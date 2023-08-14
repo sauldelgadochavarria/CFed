@@ -70,7 +70,7 @@
                     <% } else if(lang=="de") { %>
                         <img src="public/assets/images/flags/germany.jpg" alt="Header Language" height="16">
                     <% } else if(lang=="es") { %>
-                        <img src="public/assets/images/flags/spain.jpg" alt="Header Language" height="16">
+                        <img src="public/assets/images/flags/mexico64.png" alt="Header Language" height="16">
                     <% } else { %>
                         <img src="public/assets/images/flags/us.jpg" alt="Header Language" height="16">
                     <% } %>
@@ -84,7 +84,7 @@
                     
                     <!-- item-->
                     <a href="?clang=es" class="dropdown-item notify-item">
-                        <img src="public/assets/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
+                        <img src="public/assets/images/flags/mexico64.png" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
                     </a>
 
                     <!-- item-->
@@ -288,7 +288,7 @@
                             </a>
                         </li>
     
-                        <li class="nav-item dropdown">
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-uielement" role="button">
                                 <i class="uil-flask me-2"></i><%=translation.UI_Elements%> <div class="arrow-down"></div>
                             </a>
@@ -331,7 +331,7 @@
                                 </div>
     
                             </div>
-                        </li>
+                        </li> -->
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-pages" role="button">
@@ -382,14 +382,26 @@
                                 <div class="dropdown">
                                     <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-contact"
                                         role="button">
-                                        <%=translation.Contacts%> <div class="arrow-down"></div>
+                                        <%=translation.Reports%> <div class="arrow-down"></div>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="topnav-contact">
+                                        <a href="reports-nom-gravex" class="dropdown-item"><%=translation.Rep_Nomgrevex%></a>
+                                        <a href="reports-list" class="dropdown-item"><%=translation.Rep_Prov_Iva%></a>
+                                        <a href="reports-profile" class="dropdown-item"><%=translation.Profile%></a>
+                                    </div>
+                                </div>
+
+                                <!-- <div class="dropdown">
+                                    <a class="dropdown-item dropdown-toggle arrow-none" href="#" id="topnav-contact"
+                                        role="button">
+                                       -- <%=translation.Contacts%> <div class="arrow-down"></div>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="topnav-contact">
                                         <a href="contacts-grid" class="dropdown-item"><%=translation.User_Grid%></a>
                                         <a href="contacts-list" class="dropdown-item"><%=translation.User_List%></a>
                                         <a href="contacts-profile" class="dropdown-item"><%=translation.Profile%></a>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </li>
 

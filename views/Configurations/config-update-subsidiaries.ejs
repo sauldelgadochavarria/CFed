@@ -1,0 +1,425 @@
+<%- contentFor('HeaderCss') %>
+
+    <%- contentFor('breadcrumb') %>
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">Subsidiaries</h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Configurations</a></li>
+                            <li class="breadcrumb-item active">Subsidiaries</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <%- contentFor('body') %>
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Actualización de subsidiarias</h4>
+                            <p class="card-title-desc">Ingrese información.</p>
+                            <!-- <form id ="addsubsidiaryfrm" class="needs-validation" action="/config-add-subsidiaries/"  method="POST"> -->
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="validationRS">Id</label>
+                                    <input type="text" class="form-control" id="subsidiaryid" placeholder="Razon social"
+                                        value=<%=subsidiary._id %>  readonly required >
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="validationRS">Razón Social</label>
+                                        <input type="text" class="form-control" id="validationRS"
+                                            placeholder="Razon social" value="<%=subsidiary.razonSocial %>" required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="validationRFC">RFC</label>
+                                        <input type="text" class="form-control" id="validationRFC" placeholder="RFC"
+                                            value=<%=subsidiary.rfc %> required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="col-md-3">
+                                        <label class="form-label">Regimen</label>
+                                        <select id="regimen" class="form-select" required>
+
+
+                                            <%  for ( var i=0; i < regimen.length; i++ ) { 
+                                                // var selected=(
+                                                // regimen[i].clave== subsidiary.regimen) ? "selected" : "" ; %>
+                                            <option value="<%=regimen[i].clave %>"  >
+
+                                                <%=regimen[i].regimen %>
+                                            </option>
+                                            <% }
+                                         %>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="validationDireccion">Direccion</label>
+                                        <input type="text" class="form-control" id="validationDireccion"
+                                            placeholder="Last name" value = "<%=subsidiary.direccion.toString() %>"  required>
+                                        <div class="valid-feedback">
+                                            Looks good!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="validationCiudad">Cuidad</label>
+                                        <input type="text" class="form-control" id="validationCiudad" placeholder="City"
+                                            value ="<%=subsidiary.ciudad %>" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid city.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="validationEstado">State</label>
+                                        <input type="text" class="form-control" id="validationEstado"
+                                            placeholder="State" value ="<%=subsidiary.estado %>" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid state.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="validationZip">Zip</label>
+                                        <input type="text" class="form-control" id="validationZip" placeholder="Zip"
+                                            value =<%=subsidiary.zip %> required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid zip.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="validationZip">Representante Legal</label>
+                                        <input type="text" class="form-control" id="validationrepresentante"
+                                            placeholder="NombreRepresentante" value ="<%=subsidiary.representanteLegal %>" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid representanteLegal.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="validationZip"> RFC Representante Legal</label>
+                                        <input type="text" class="form-control" id="validationrfcrepresentante"
+                                            placeholder="RfcRerpesentante" value ="<%=subsidiary.rfcRepresentanteLegal %>" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid rfcRepresentanteLegal.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="validationZip"> Registro Patronal </label>
+                                        <input type="text" class="form-control" id="validationregistropatronal"
+                                            placeholder="reg. patronal" value ="<%=subsidiary.registroPatronal %>" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid registroPatronal.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="validationZip"> Sucursal </label>
+                                        <input type="text" class="form-control" id="validationsucursal"
+                                            placeholder="Sucursal" value ="<%=subsidiary.sucursal %>" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid sucursal.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="validationZip"> Estatus </label>
+                                        <input type="text" class="form-control" id="validationestatus" placeholder="Estatus"
+                                            value ="<%=subsidiary.estatus %>" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid sucursal.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mol-md-4">
+                                <label class="form-label" for="validationCustom02">Archivo .Cer Fiel</label>
+                                <input type="file" class="form-control-file" id="fieldcer">
+                            </div>
+                            <div class="mol-md-4">
+                                <label class="form-label" for="validationCustom02">Fiel .Key Fiel</label>
+                                <input type="file" class="form-control-file" id="fielkey">
+                            </div>
+                            <div class="mol-md-4">
+                                <label class="form-label" for="validationCustom02">Constraseña Fiel</label>
+                                <input type="password" class="form-control" id="fielpsw">
+                                <div class="invalid-feedback">
+                                    Please provide a valid state.
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="invalidCheck" required>
+                                            <label class="form-check-label" for="invalidCheck">Agree to terms and
+                                                conditions</label>
+                                            <div class="invalid-feedback">
+                                                You must agree before submitting.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <button class="btn btn-primary" type="submit">Guardar</button>Guardar -->
+                            <button type="submit" onclick="javascript: sendFormSubsidiary()"
+                                class="btn btn-primary w-md">Guardar </button>
+                            <!-- </form> -->
+                        </div>
+                    </div>
+                    <!-- end card -->
+                </div> <!-- end col -->
+
+                <!-- <div class="col-xl-6"> -->
+                <!-- <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Bootstrap Validation (Tooltips)</h4>
+                <p class="card-title-desc">If your form layout allows it, you can swap the <code>.{valid|invalid}-feedback</code> classes for <code>.{valid|invalid}-tooltip</code> classes to display validation feedback in a styled tooltip.</p>
+                <form class="needs-validation" novalidate>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3 position-relative">
+                                <label class="form-label" for="validationTooltip01">First name</label>
+                                <input type="text" class="form-control" id="validationTooltip01" placeholder="First name" value="Mark" required>
+                                <div class="valid-tooltip">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3 position-relative">
+                                <label class="form-label" for="validationTooltip02">Last name</label>
+                                <input type="text" class="form-control" id="validationTooltip02" placeholder="Last name" value="Otto" required>
+                                <div class="valid-tooltip">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3 position-relative">
+                                <label class="form-label" for="validationTooltipUsername">Username</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="validationTooltipUsername" placeholder="Username" aria-describedby="validationTooltipUsernamePrepend" required>
+                                    <div class="invalid-tooltip">
+                                    Please choose a unique and valid username.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3 position-relative">
+                                <label class="form-label" for="validationTooltip03">City</label>
+                                <input type="text" class="form-control" id="validationTooltip03" placeholder="City" required>
+                                <div class="invalid-tooltip">
+                                    Please provide a valid city.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3 position-relative">
+                                <label class="form-label" for="validationTooltip04">State</label>
+                                <input type="text" class="form-control" id="validationTooltip04" placeholder="State" required>
+                                <div class="invalid-tooltip">
+                                    Please provide a valid state.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Submit form</button>
+                </form>
+            </div>
+        </div> -->
+                <!-- end card -->
+                <!-- </div> -->
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="composemodal" tabindex="-1" role="dialog" aria-labelledby="composemodalTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="composemodalTitle">New Message</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="To">
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Subject">
+                                </div>
+                                <div class="mb-3">
+                                    <form method="post">
+                                        <textarea id="email-editor" name="area"></textarea>
+                                    </form>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Send <i
+                                    class="fab fa-telegram-plane ms-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%- contentFor('FooterJs') %>
+
+                <script type="text/javascript">
+
+
+                    function sendFormSubsidiary() {
+                        // (B1) FORM DATA - AUTO GET ALL FIELDS FROM "#DEMOA"
+                        // event.preventDefault()
+                        console.log("entrando a sendfrm");
+                        // var _id = document.getElementById("subsidiaryid").value;
+                        var razonSocial = document.getElementById("validationRS").value;
+                        var rfc = document.getElementById("validationRFC").value;
+                        var direccion = document.getElementById("validationDireccion").value;
+                        var ciudad = document.getElementById("validationCiudad").value;
+                        var estado = document.getElementById("validationEstado").value;
+                        var zip = document.getElementById("validationZip").value;
+                        var e = document.getElementById("regimen");
+                        var regimen = e.value;
+                        var zip = document.getElementById("validationZip").value;
+                        var representanteLegal = document.getElementById("validationrepresentante").value;
+                        var rfcRepresentanteLegal = document.getElementById("validationrfcrepresentante").value;
+                        var registroPatronal = document.getElementById("validationregistropatronal").value;
+                        var sucursal = document.getElementById("validationsucursal").value;
+                        var estatus = document.getElementById("validationestatus").value;
+                        var fiel = document.getElementById("fieldcer").value;
+                        var key = document.getElementById("fielkey").value;
+                        var psw = document.getElementById("fielpsw").value;
+
+                        console.log('razonSocial:' + razonSocial)
+                        // event.preventDefault()
+                        // if (!(htipo) || htipo.length == 0) {
+                        //     alert("Debe seleccionar el tipo de comprobante");
+                        //     return false;
+                        // }
+                        var params = {}
+                        // params._id = _id;
+                        params.razonSocial = razonSocial;
+                        params.rfc = rfc;
+                        params.direccion = direccion;
+                        params.ciudad = ciudad;
+                        params.estado = estado;
+                        params.zip = zip;
+                        params.regimen = regimen;
+                        params.representanteLegal = representanteLegal;
+                        params.rfcRepresentanteLegal = rfcRepresentanteLegal;
+                        params.registroPatronal = registroPatronal;
+                        params.sucursal = sucursal;
+                        params.estatus = estatus;
+                        params.fiel = fiel;
+                        params.key = key;
+                        params.psw = psw;
+                        jsonDato = JSON.stringify(params);
+                        console.log('enviado:' + jsonDato);
+                        // (B2) AJAX FETCH
+                        fetch("/config-add-subsidiaries", {
+                            method: "post",
+                            // redirect: 'follow',
+                            // mode: 'no-cors',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }, body: jsonDato
+                        })
+                            .then(async (response) => {
+                                // HTTP 301 response
+                                var data = await response.json();
+                                console.log('respuesta:' + data.respuesta);
+                                if (data.respuesta == 'ok') {
+                                    setTimeout(function () { alert("alta exitosa"); }, 1000)
+                                    window.location.href = "/config-subsidiaries";
+                                }
+                                // HOW CAN I FOLLOW THE HTTP REDIRECT RESPONSE?
+                                // if (response.redirected) {
+                                //     window.location.href = response.url;
+                                // }
+                            })
+                        // .then(res => res.text()).then(htmlStr => {
+                        //     //  .then(res => res.json()).then(json => {
+                        //     // document.open();
+                        //     // document.write(htmlStr);
+                        //     // document.close();
+                        //     console.log('POST res ui:'+json)
+                        //     window.location.href = data.redirect;
+                        //     // if ( response.redirected) {
+                        //     // window.location.href = response.url;
+                        //     // return;
+                        //     // }
+                        //     // window.location.href = "http://localhost/config-subsidiaries";
+                        // })//
+                        // .then(txt => console.log(txt))
+                        // .catch(err => console.error(err));
+
+                        // (B3) PREVENT DEFAULT FORM SUBMIT
+                        return false;
+                    }
+
+                </script>
+
+                <script src="public/assets/libs/parsleyjs/parsley.min.js"></script>
+
+                <script src="public/assets/js/pages/form-validation.init.js"></script>
+
+                <%- contentFor('BottomJs') %>

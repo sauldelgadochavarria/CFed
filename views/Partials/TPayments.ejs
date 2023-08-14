@@ -1,0 +1,46 @@
+
+                        <tbody>
+                            <% invoices.forEach(function(invoice) { %>
+                                <tr>
+                                    <td> <%- invoice.VersionCfdi %> </td>
+                                    <td> <%- invoice.DomicilioFiscalReceptor %> </td>
+                                    <td> <%- invoice.NombreReceptor %> </td>
+                                    <td> <%- invoice.RegimenFiscalReceptor %> </td>
+                                    <td> <%- invoice.RfcReceptor %> </td>
+                                    <td> <%- invoice.UsoCFDI %> </td>
+                                    <td> <%- invoice.fechaPago %> </td>
+                                    <td> <%- invoice.LugarExpedicion %> </td>
+                                    <td> <%- invoice.Serie %> </td>
+                                    <td> <%- invoice.NombreEmisor %> </td>
+                                    <td> <%- invoice.RegimenFiscalEmisor %> </td>
+                                    <td> <%- invoice.RfcEmisor %> </td>
+                                    <td> <%- invoice.UUID %> </td>
+                                    <td> <%- invoice.tipoComprobante %> </td>
+                                    <td> <%- invoice.versionPago %> </td>
+                                    <td> <%- invoice.impPagado %> </td>
+                                    <td> <%- invoice.saldoAnterior %> </td>
+                                    <td> <%- invoice.ImpSaldoInsoluto %> </td>
+                                    <td> <%- invoice.monedaDr %> </td>
+                                    <td> <%- invoice.parcialidad %> </td>
+                                    <td> <%- invoice.seriePago %> </td>
+                                    <td> <%- invoice.baseDR %> </td>
+                                    <td> <%- invoice.ImporteDR %> </td>
+                                    <td> <%- invoice.ImpuestoDR %> </td>
+                                    <td> <%- invoice.TasaOCuotaDR %> </td>
+                                    <td> <%- invoice.TipoFactorDR %> </td>
+                                    <td> <%- invoice.id_DrIngreso %> </td>
+                                    <td> <%- invoice.FechaIngreso %> </td>
+                                    <td> <%- invoice.MetodoPagoIngreso %> </td>
+                                    <td> <%- invoice.ImporteTrasladoIngreso %> </td>
+                                    <td> <%- invoice.ImpuestoTrasladoIngreso %> </td>
+                                    <td> <%- invoice.TasaOCuotaTrasladoIngreso %> </td>
+                                    <td> <%- invoice.TipoFactorTrasladoIngreso %> </td>
+                                    <td> <%- invoice.TotalComprobanteIngreso %> </td>
+                                    <td> <%- invoice.ImporteRetencionIngreso %> </td>
+                                    <td> <%- invoice.ImpuestoRetencionIngreso %> </td>
+                                    <td> <%- invoice.TasaOCuotaRetencionIngreso %> </td>
+                                    <td> <%- invoice.TipoFactorRetencionIngreso %> </td>
+                                </tr>
+                        <% }); %>  
+                        </tbody>
+

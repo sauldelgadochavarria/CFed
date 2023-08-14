@@ -70,7 +70,7 @@
                     <% } else if(lang=="de") { %>
                         <img src="public/assets/images/flags/germany.jpg" alt="Header Language" height="16">
                     <% } else if(lang=="es") { %>
-                        <img src="public/assets/images/flags/spain.jpg" alt="Header Language" height="16">
+                        <img src="public/assets/images/flags/mexico64.png" alt="Header Language" height="16">
                     <% } else { %>
                         <img src="public/assets/images/flags/us.jpg" alt="Header Language" height="16">
                     <% } %>
@@ -84,23 +84,23 @@
                     
                     <!-- item-->
                     <a href="?clang=es" class="dropdown-item notify-item">
-                        <img src="public/assets/images/flags/spain.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
+                        <img src="public/assets/images/flags/mexico64.png" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
                     </a>
 
                     <!-- item-->
-                    <a href="?clang=de" class="dropdown-item notify-item">
+                    <!-- <a href="?clang=de" class="dropdown-item notify-item">
                         <img src="public/assets/images/flags/germany.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
-                    </a>
+                    </a> -->
 
                     <!-- item-->
-                    <a href="?clang=it" class="dropdown-item notify-item">
+                    <!-- <a href="?clang=it" class="dropdown-item notify-item">
                         <img src="public/assets/images/flags/italy.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
-                    </a>
+                    </a> -->
 
                     <!-- item-->
-                    <a href="?clang=ru" class="dropdown-item notify-item">
+                    <!-- <a href="?clang=ru" class="dropdown-item notify-item">
                         <img src="public/assets/images/flags/russia.jpg" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
-                    </a>
+                    </a> -->
                 </div>
             </div>
 
@@ -161,7 +161,7 @@
                     <i class="uil-minus-path"></i>
                 </button>
             </div>
-
+<!-- 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -247,20 +247,20 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="rounded-circle header-profile-user" src="public/assets/images/users/avatar-4.jpg"
                         alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15">Marcus</span>
+                    <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15">Admin</span>
                     <i class="uil-angle-down d-none d-xl-inline-block font-size-15"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item" href="#"><i class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i> <span class="align-middle"><%=translation.View_Profile%></span></a>
-                    <a class="dropdown-item" href="#"><i class="uil uil-wallet font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle"><%=translation.My_Wallet%></span></a>
+                    <!-- <a class="dropdown-item" href="#"><i class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i> <span class="align-middle"><%=translation.View_Profile%></span></a> -->
+                    <!-- <a class="dropdown-item" href="#"><i class="uil uil-wallet font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle"><%=translation.My_Wallet%></span></a> -->
                     <a class="dropdown-item d-block" href="#"><i class="uil uil-cog font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle"><%=translation.Settings%></span> <span class="badge bg-soft-success rounded-pill mt-1 ms-2">03</span></a>
                     <a class="dropdown-item" href="#"><i class="uil uil-lock-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle"><%=translation.Lock_screen%></span></a>
                     <a class="dropdown-item" href="/logout"><i class="uil uil-sign-out-alt font-size-18 align-middle me-1 text-muted"></i> <span class="align-middle"><%=translation.Sign_out%></span></a>

@@ -1,0 +1,76 @@
+
+                        <tbody>
+                            <% invoices.forEach(function(invoice) { %>
+                                <tr>
+                                    <!-- <td scope="row">
+                                        <div class="form-check font-size-16">
+                                            <input type="checkbox" class="form-check-input" id="contacusercheck1">
+                                            <label class="form-check-label" for="contacusercheck1"></label>
+                                        </div>
+                                    </td> -->
+                                    <td>
+                                        <%-invoice.UUID  %>
+                                    <td>
+                                        <%-  invoice.Descargado %>
+                                    </td>
+                                    <td>
+                                        <%-  invoice.RFCEmisor %>
+                                    </td>
+                                    <td>
+                                        <%-   invoice.NombreEmisor %>
+                                    </td>
+                                    <td>
+                                        <%-   invoice.RFCReceptor %>
+                                    </td>
+                                    <td>
+                                        <%-   invoice.NombreReceptor %>
+                                    </td>
+                                    <td>
+                                        <%-   invoice.FechaEmision %>
+                                    </td>
+                                    <td>
+                                        <%-   invoice.FechaCertificacion %>
+                                    </td>
+                                    <td>
+                                        <%-   invoice.RFCPAC %>
+                                    </td>
+                                    <td>
+                                        <%-   invoice.Total %>
+                                    </td>
+                                    <td>
+                                        <%-   invoice.Tipo %>
+                                    </td>
+                                    <td>
+                                        <%-   invoice.Estatuscancelacion %>
+                                    </td>
+                                    <td>
+                                        <%-   invoice.Estado %>
+                                    </td>
+                                    <td>
+                                        <%-   invoice.FechadeCancelacion %>
+                                    </td>
+                                    <!-- <td>
+                                        <ul class="list-inline mb-0">
+                                            <li class="list-inline-item">
+                                                <a href="javascript:void(0);" class="px-2 text-primary"><i class="uil uil-pen font-size-18"></i></a>
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <a href="javascript:void(0);" class="px-2 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
+                                            </li>
+                                            <li class="list-inline-item dropdown">
+                                                <a class="text-muted dropdown-toggle font-size-18 px-2" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true">
+                                                    <i class="uil uil-ellipsis-v"></i>
+                                                </a>
+                                            
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <a class="dropdown-item" href="#">Action</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </td> -->
+        
+                                </tr>
+                        <% }); %>  
+                        </tbody>

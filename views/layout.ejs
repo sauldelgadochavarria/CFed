@@ -4,14 +4,17 @@
 <head>
   
   <meta charset="utf-8" />
-  <title><%- title %> | CDFI - Admin & Dashboard </title>
+  <title><%- title %> | CDFI FED- Admin & Dashboard </title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta content=" Multipurpose Admin & Dashboard " name="description">
   <meta content="CFDI admin" name="author">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <!-- Content-Security-Policy: default-src 'self' -->
   <!-- App favicon -->
   <link rel="shortcut icon" href="public/assets/images/favicon.ico">
 
   <%- HeaderCss %>
+  Header always set Content-Security-Policy "upgrade-insecure-requests;"
   <%- include ('./Partials/HeaderStyle')  %>
 
 </head>

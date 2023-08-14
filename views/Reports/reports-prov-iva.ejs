@@ -1,0 +1,378 @@
+<%- contentFor('HeaderCss') %>
+
+<!-- DataTables -->
+<link href="public/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="public/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+<!-- Responsive datatable examples -->
+<link href="public/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+<%- contentFor('breadcrumb') %>
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-flex align-items-center justify-content-between">
+            <h4 class="mb-0">CFDIs</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
+                    <li class="breadcrumb-item active">Datatables</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<%- contentFor('body') %>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <!-- <div class="card-body"> -->
+
+                <!-- <h4 class="card-title">Default Datatable</h4>
+                <p class="card-title-desc">DataTables has most features enabled by
+                    default, so all you need to do to use it with your own tables is to call
+                    the construction function: <code>$().DataTable();</code>.
+                </p> -->
+
+                <!-- <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary**</th>
+                    </tr>
+                    </thead>
+                   
+                    <tbody> 
+
+                    </tbody>
+
+                </table> -->
+
+            <!-- </div> -->
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">IVA de PROVEEDORES</h4>
+                <div class="row row-cols-lg-auto gx-3 gy-2 align-items-center">
+                    <!-- <form id="cunsulta-frm" class="row row-cols-lg-auto gx-3 gy-2 align-items-center" onsubmit="sendForm()"> -->
+                        <div class="col-md-5">
+                            <select  id ="Tipo"  required class="form-select" >
+                                <!-- <option selected disabled value="">Sel. Tipo</option> -->
+                                <!-- <option>ingresos</option> -->
+                                <option>pagos</option>
+                                <!-- <option>nominas</option> -->
+                                <!-- <option>egresos</option> -->
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <select id ="Er" required class="form-select">
+                                <option selected disabled value="">Sel. Emitido/Recibido</option>
+                                <option>Emitidos</option>
+                                <option>Recibidos</option>
+                            </select>
+                        </div>
+                        <div class="col-md-5">
+                            <select  id ="Estado" required class="form-select">
+                                <option selected disabled value="">Sel.Estado</option>
+                                <option>Vigente</option>
+                                <option>Cancelado</option>
+                            </select>
+                        </div>
+                        <div class="col-5">
+                            <!-- <label for="example-datetime-local-input" class="col-md-4 col-form-label">F. Inicial</label> -->
+                            <label class="visually-hidden" for="specificSizeInputName">Fecha Inicial</label>
+                            <div class="col-md-12">
+                                <input id= "Fini" class="form-control" type="datetime-local" >
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <!-- <label for="example-datetime-local-input" class="col-md-4 col-form-label">F. Fin</label> -->
+                            <label class="visually-hidden" for="specificSizeInputName">Fecha Fin</label>
+                            <div class="col-md-12">
+                                <input  id ="Ffin" class="form-control" type="datetime-local" >
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <button type="submit" onclick="javascript: sendForm()"  class="btn btn-primary w-md">Consultar </button>
+                            <!-- <input id="cunsulta-btn" type="submit" class="btn btn-primary w-md" value= "Consultar" > -->
+                        </div>
+                    <!-- </form> -->
+                </div>
+
+                <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                    <tr>
+                        <th> VersionCfdi </th>
+                        <th> DomicilioFiscalReceptor </th>
+                        <th> NombreReceptor </th>
+                        <th> RegimenFiscalReceptor </th>
+                        <th> RfcReceptor </th>
+                        <th> UsoCFDI </th>
+                        <th> fechaPago </th>
+                        <th> LugarExpedicion </th>
+                        <th> Serie </th>
+                        <th> NombreEmisor </th>
+                        <th> RegimenFiscalEmisor </th>
+                        <th> RfcEmisor </th>
+                        <th> UUID </th>
+                        <th> tipoComprobante </th>
+                        <th> versionPago </th>
+                        <th> impPagado </th>
+                        <th> saldoAnterior </th>
+                        <th> ImpSaldoInsoluto </th>
+                        <th> monedaDr </th>
+                        <th> parcialidad </th>
+                        <th> seriePago </th>
+                        <th> baseDR </th>
+                        <th> ImporteDR </th>
+                        <th> ImpuestoDR </th>
+                        <th> TasaOCuotaDR </th>
+                        <th> TipoFactorDR </th>
+                        <th> id_DrIngreso </th>
+                        <th> FechaIngreso </th>
+                        <th> MetodoPagoIngreso </th>
+                        <th> ImporteTrasladoIngreso </th>
+                        <th> ImpuestoTrasladoIngreso </th>
+                        <th> TasaOCuotaTrasladoIngreso </th>
+                        <th> TipoFactorTrasladoIngreso </th>
+                        <th> TotalComprobanteIngreso </th>
+                        <th> ImporteRetencionIngreso </th>
+                        <th> ImpuestoRetencionIngreso </th>
+                        <th> TasaOCuotaRetencionIngreso </th>
+                        <th> TipoFactorRetencionIngreso </th>
+                    </tr>
+                    </thead>
+                    <%- include('../Partials/TPayments.ejs')-%>
+                </table>
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->
+
+<%- contentFor('FooterJs') %>
+
+                <!-- Required datatable js -->
+                <script src="public/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+                <script src="public/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+                <!-- Buttons examples -->
+                <script src="public/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+                <script src="public/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+                <script src="public/assets/libs/jszip/jszip.min.js"></script>
+                <script src="public/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+                <script src="public/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+                <script src="public/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+                <script src="public/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+                <script src="public/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+
+                <!-- Responsive examples -->
+                <script src="public/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+                <script src="public/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+                <!-- Datatable init js -->
+                <!-- <script src="public/assets/js/pages/datatables.init.js"></script> -->
+                <script src="public/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+                <script src="public/assets/libs/datatables.net-fixedcolumns/js/dataTables.fixedColumns.min.js"></script>
+                <!--    Nuevo-->
+
+
+<script type="text/javascript">
+    
+    function sendForm() {
+                    // (B1) FORM DATA - AUTO GET ALL FIELDS FROM "#DEMOA"
+                    // event.preventDefault()
+                    console.log("entrando a sendfrm");
+                    var htipo = document.getElementById("Tipo").value;
+                    var hEr =  document.getElementById("Er").value;
+                    var hEstado = document.getElementById("Estado").value;
+                    var hFini =  document.getElementById("Fini").value;
+                    var hFfin =  document.getElementById("Ffin").value;
+                    console.log('ffin:'+hFfin)
+                    // event.preventDefault()
+                    if (!(htipo) || htipo.length == 0) {
+                        alert("Debe seleccionar el tipo de comprobante");
+                        return false;
+                    }
+                    var params = {}
+                    params.tipo =htipo;
+                    params.emiRec= hEr;
+                    params.estado = hEstado;
+                    params.fini  = hFini;
+                    params.ffin = hFfin;
+                    jsonDato = JSON.stringify(params);
+                        console.log(jsonDato);
+                    // (B2) AJAX FETCH
+                    fetch("/reports-prov-iva", { method:"post", headers: {
+                            'Content-Type': 'application/json'
+                            }, body:jsonDato })
+                    .then(res => res.text()).then(htmlStr => {
+                        document.open();
+                        document.write(htmlStr);
+                        document.close();
+                        })// .then(res => res.text())
+                    .then(txt => console.log(txt))
+                    .catch(err => console.error(err));
+                    
+                    // (B3) PREVENT DEFAULT FORM SUBMIT
+                    return false;
+                    }
+                // </script>
+</script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var dwbtn = {
+            text: 'Descarga',
+            action: function () {
+                var fileKeysString = "uni";
+                var newFileKeys = "dos";
+
+                fetch('/download', { fileKeys: newFileKeys })
+                    .then(async res => ({
+                        filename: res.headers.get('content-disposition').split('filename=')[1],
+                        blob: await res.blob()
+                    }))
+                    .then(resObj => {
+                        // It is necessary to create a new blob object with mime-type explicitly set for all browsers except Chrome, but it works for Chrome too.
+                        const newBlob = new Blob([resObj.blob], { type: 'application/octet-stream' });
+
+                        // MS Edge and IE don't allow using a blob object directly as link href, instead it is necessary to use msSaveOrOpenBlob
+                        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                            window.navigator.msSaveOrOpenBlob(newBlob);
+                        } else {
+                            // For other browsers: create a link pointing to the ObjectURL containing the blob.
+                            const objUrl = window.URL.createObjectURL(newBlob);
+
+                            let link = document.createElement('a');
+                            link.href = objUrl;
+                            link.download = resObj.filename;
+                            link.click();
+
+                            // For Firefox it is necessary to delay revoking the ObjectURL.
+                            setTimeout(() => { window.URL.revokeObjectURL(objUrl); }, 250);
+                        }
+                    })
+                    .catch((error) => {
+                        console.log('DOWNLOAD ERROR', error);
+                    });
+            }
+        }
+        var resbtn = {
+            text: 'Resumen',
+            action: function () {
+                alert(JSON.stringify(data[0]));
+            }
+        }
+
+        $('#datatable-buttons thead tr')
+            .clone(true)
+            .addClass('filters')
+            .appendTo('#datatable-buttons thead');
+
+
+        $('#datatable-buttons').DataTable({
+            scrollY: 300,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            orderCellsTop: true,
+            fixedHeader: true,
+            dom: 'Bfrtip',
+            buttons: ['copy', 'excel', dwbtn, 'colvis'],
+            fixedColumns: {
+                left: 2
+            },
+            // columnDefs: [ {
+            //     orderable: false,
+            //     className: 'select-checkbox',
+            //     targets:   0
+            // } ],
+            // select: {
+            //     style:    'os',
+            //     selector: 'td:first-child'
+            // },
+            order: [[1, 'asc']],
+            initComplete: function () {
+                var api = this.api();
+
+                // For each column
+                api
+                    .columns()
+                    .eq(0)
+                    .each(function (colIdx) {
+                        // Set the header cell to contain the input element
+                        var cell = $('.filters th').eq(
+                            $(api.column(colIdx).header()).index()
+                        );
+                        var title = $(cell).text();
+                        $(cell).html('<input type="text" placeholder="' + title + '" />');
+
+                        // On every keypress in this input
+                        $(
+                            'input',
+                            $('.filters th').eq($(api.column(colIdx).header()).index())
+                        )
+                            .off('keyup change')
+                            .on('change', function (e) {
+                                // Get the search value
+                                $(this).attr('title', $(this).val());
+                                var regexr = '({search})'; //$(this).parents('th').find('select').val();
+
+                                var cursorPosition = this.selectionStart;
+                                // Search the column for that value
+                                api
+                                    .column(colIdx)
+                                    .search(
+                                        this.value != ''
+                                            ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                            : '',
+                                        this.value != '',
+                                        this.value == ''
+                                    )
+                                    .draw();
+                            })
+                            .on('keyup', function (e) {
+                                e.stopPropagation();
+
+                                $(this).trigger('change');
+                                $(this)
+                                    .focus()[0]
+                                    .setSelectionRange(cursorPosition, cursorPosition);
+                            });
+                    });
+            },
+        });
+    });
+</script>
+<script type="text/javascript"> 
+    window.addEventListener('load', () => {
+        var now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+      
+        /* remove second/millisecond if needed - credit ref. https://stackoverflow.com/questions/24468518/html5-input-datetime-local-default-value-of-today-and-current-time#comment112871765_60884408 */
+        now.setMilliseconds(null)
+        now.setSeconds(null)
+      
+        document.getElementById('Fini').value = now.toISOString().slice(0, -1);
+        document.getElementById('Ffin').value = now.toISOString().slice(0, -1);
+      });
+</script>
+<%- contentFor('BottomJs') %>
+
+<script src="public/assets/js/pages/table-editable.int.js"></script> 

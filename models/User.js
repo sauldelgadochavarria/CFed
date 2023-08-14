@@ -1,5 +1,6 @@
-var mongoose = require('mongoose')
-var Schema = mongoose.Schema
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var passportLocalMongoose = require('passport-local-mongoose');
 const userSchema = new Schema({
   firstName: {
     type: String,
@@ -16,12 +17,17 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    match: /(?=.*[a-zA-Z])(?=.*[0-9]+).*/,
-    minlength: 8
+    // match: /(?=.*[a-zA-Z])(?=.*[0-9]+).*/,
+    match: /[0-9]*/,
+    minlength: 6
   },
   gender: {
     type: String,
     enum: ['Male', 'Female'],
+  },
+  roles: {
+    type: Map,
+    of: String
   },
   email: {
     type: String,
@@ -33,6 +39,7 @@ const userSchema = new Schema({
     default: new Date()
   }
 })
-
-var User = mongoose.model('User', userSchema)
+userSchema.plugin(passportLocalMongoose, {  usernameField : 'email' });
+var User = mongoose.model('User', userSchema);
+// User.plugin(passportLocalMongoose);
 module.exports = User

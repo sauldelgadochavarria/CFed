@@ -1,0 +1,24 @@
+
+                        <tbody>
+                            <% invoices.forEach(function(invoice) { %>
+                                <tr>
+                                    <td> <%- invoice.VersionCfdi %> </td>
+                                    <td> <%- invoice.DomicilioFiscalReceptor %> </td>
+                                    <td> <%- invoice.NombreReceptor %> </td>
+                                    <td> <%- invoice.RegimenFiscalReceptor %> </td>
+                                    <td> <%- invoice.RfcReceptor %> </td>
+                                    <td> <%- invoice.UsoCFDI %> </td>
+                                    <td> <%- invoice.Fecha %> </td>
+                                    <td> <%- invoice.LugarExpedicion %> </td>
+                                    <td> <%- invoice.Serie %> </td>
+                                    <td> <%- invoice.NombreEmisor %> </td>
+                                    <td> <%- invoice.RegimenFiscalEmisor %> </td>
+                                    <td> <%- invoice.RfcEmisor %> </td>
+                                    <td> <%- invoice.Total %> </td>
+                                    <td> <%- invoice.UUID %> </td>
+                                    <td> <%- invoice.TipoDeComprobante %> </td>
+                                    <td> <%- invoice.Archivo %> </td>
+                                </tr>
+                        <% }); %>  
+                        </tbody>
+

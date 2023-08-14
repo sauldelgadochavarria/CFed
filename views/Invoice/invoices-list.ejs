@@ -1,474 +1,407 @@
+<meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
 <%- contentFor('HeaderCss') %>
 
-<!-- bootstrap-datepicker css -->
-<link href="public/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <!-- DataTables -->
+    <link href="public/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="public/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" />
 
-<!-- DataTables -->
-<link href="public/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="public/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- nuevo -->
+    <link href="public/assets/libs/datatables.net/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/libs/datatables.net/css/fixedColumns.dataTables.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="public/assets/libs/datatables.net-select/css/select.dataTables.min.css" rel="stylesheet"
+        type="text/css" />
 
-<!-- Responsive datatable examples -->
-<link href="public/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" /> 
+    <%- contentFor('breadcrumb') %>
 
-<%- contentFor('breadcrumb') %>
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
 
-<!-- start page title -->
-<div class="row">
-    <div class="col-12">
-        <div class="page-title-box d-flex align-items-center justify-content-between">
-            <h4 class="mb-0">Invoice List</h4>
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-3">CFDIs</h4>
 
-            <div class="page-title-right">
-                <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Invoices</a></li>
-                    <li class="breadcrumb-item active">Invoice List</li>
-                </ol>
-            </div>
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>
+                            <li class="breadcrumb-item active">Datatables</li>
+                        </ol>
+                    </div>
 
-        </div>
-    </div>
-</div>
-<!-- end page title -->
-
-<%- contentFor('body') %>
-
-<div class="row">
-    <div class="col-md-4">
-        <div>
-            <button type="button" class="btn btn-success waves-effect waves-light mb-3"><i class="mdi mdi-plus me-1"></i> Add Invoice</button>
-        </div>
-    </div>
-    <div class="col-md-8">
-        <div class="float-end">
-            <div class=" mb-3">
-                <div class="input-daterange input-group" id="datepicker6" data-date-format="dd M, yyyy" data-date-autoclose="true" data-provide="datepicker" data-date-container='#datepicker6'>
-                    <input type="text" class="form-control text-start" placeholder="From" name="From" />
-                    <input type="text" class="form-control text-start" placeholder="To" name="To" />
-                    
-                    <button type="button" class="btn btn-primary"><i class="mdi mdi-filter-variant"></i></button>
                 </div>
             </div>
-            
         </div>
-    </div>
-</div>
+        <div class="row row-cols-lg-auto gx-3 gy-2 align-items-center">
+            <!-- <form id="cunsulta-frm" class="row row-cols-lg-auto gx-3 gy-2 align-items-center" onsubmit="sendForm()"> -->
+                <div class="col-md-5">
+                    <select  id ="Tipo"  required class="form-select" >
+                        <option selected disabled value="">Sel. Tipo</option>
+                        <option>ingresos</option>
+                        <option>pagos</option>
+                        <option>nominas</option>
+                        <option>egresos</option>
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <select id ="Er" required class="form-select">
+                        <option selected disabled value="">Sel. Emitido/Recibido</option>
+                        <option>Emitidos</option>
+                        <option>Recibidos</option>
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <select  id ="Estado" required class="form-select">
+                        <option selected disabled value="">Sel.Estado</option>
+                        <option>Vigente</option>
+                        <option>Cancelado</option>
+                    </select>
+                </div>
+                <div class="col-5">
+                    <!-- <label for="example-datetime-local-input" class="col-md-4 col-form-label">F. Inicial</label> -->
+                    <label class="visually-hidden" for="specificSizeInputName">Fecha Inicial</label>
+                    <div class="col-md-12">
+                        <input id= "Fini" class="form-control" type="datetime-local" value="2019-08-19T13:45:00" id="fecha-ini">
+                    </div>
+                </div>
+                <div class="col-5">
+                    <!-- <label for="example-datetime-local-input" class="col-md-4 col-form-label">F. Fin</label> -->
+                    <label class="visually-hidden" for="specificSizeInputName">Fecha Fin</label>
+                    <div class="col-md-12">
+                        <input  id ="Ffin" class="form-control" type="datetime-local"  id="fecha-fin">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <button type="submit" onclick="javascript: sendForm()"  class="btn btn-primary w-md">Consultar </button>
+                    <!-- <input id="cunsulta-btn" type="submit" class="btn btn-primary w-md" value= "Consultar" > -->
+                </div>
+            <!-- </form> -->
+        </div>
+        <!-- end page title -->
 
-<div class="row">
-    <div class="col-lg-12">
+        <%- contentFor('body') %>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <!-- <table border="0" cellspacing="5" cellpadding="5">
+                <tbody><tr>
+                    <td>Minimum date:</td>
+                    <td><input type="text" id="min" name="min"></td>
+                </tr>
+                <tr>
+                    <td>Maximum date:</td>
+                    <td><input type="text" id="max" name="max"></td>
+                </tr>
+            </tbody></table> -->
+                        <!-- <div class="card-body"> -->
+
+                        <!-- <h4 class="card-title">Default Datatable</h4>
+                <p class="card-title-desc">DataTables has most features enabled by
+                    default, so all you need to do to use it with your own tables is to call
+                    the construction function: <code>$().DataTable();</code>.
+                </p> -->
+
+                        <!-- <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Office</th>
+                        <th>Age</th>
+                        <th>Start date</th>
+                        <th>Salary**</th>
+                    </tr>
+                    </thead>
+                   
+                    <tbody> 
+
+                    </tbody>
+
+                </table> -->
+
+                        <!-- </div> -->
+                    </div>
+                </div> <!-- end col -->
+
+
+            </div> <!-- end row -->
+
+
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">CFDIs</h4>
+                            <!-- <p class="card-title-desc">The Buttons extension for DataTables
+                    provides a common set of options, API methods and styling to display
+                    buttons on a page that will interact with a DataTable. The core library
+                    provides the based framework upon which plug-ins can built.
+                </p> -->
+                            <!--<table id="datatable-srch" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">-->
+                            <table id="datatable-buttons"
+                                class="table table-bordered stripe dt-responsive row-border order-column nowrap"
+                                style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <!-- <th></th> -->
+                                        <th>VersionCfdi</th>
+                                        <th>DomicilioFiscalReceptor</th>
+                                        <th>NombreReceptor</th>
+                                        <th>RegimenFiscalReceptor</th>
+                                        <th>RfcReceptor</th>
+                                        <th>UsoCFDI</th>
+                                        <th>Fecha</th>
+                                        <th>LugarExpedicion</th>
+                                        <th>Serie</th>
+                                        <th>NombreEmisor</th>
+                                        <th>RegimenFiscalEmisor</th>
+                                        <th>RfcEmisor</th>
+                                        <th>Total</th>
+                                        <th>UUID</th>
+                                        <th>TipoComprobante</th>
+                                        <th>Archivo</th>
+                                    </tr>
+                                </thead>
+                                <%- include('../Partials/TInvoices.ejs')-%>
+                            </table>
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div> <!-- end row -->
+
+            <%- contentFor('FooterJs') %>
+
+                <!-- Required datatable js -->
+                <script src="public/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+                <script src="public/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+                <!-- Buttons examples -->
+                <script src="public/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+                <script src="public/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+                <script src="public/assets/libs/jszip/jszip.min.js"></script>
+                <script src="public/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+                <script src="public/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+                <script src="public/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+                <script src="public/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+                <script src="public/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+
+                <!-- Responsive examples -->
+                <script src="public/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+                <script src="public/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+                <!-- Datatable init js -->
+                <!-- <script src="public/assets/js/pages/datatables.init.js"></script> -->
+                <script src="public/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+                <script src="public/assets/libs/datatables.net-fixedcolumns/js/dataTables.fixedColumns.min.js"></script>
+                <!--    Nuevo-->
+
+
+                <script type="text/javascript">
+
+                    // $('#cunsulta-frm').submit(function (e) {
+                    //     e.preventDefault(); // avoid to execute the actual submit of the form.
+                    //     var form = $(this);
+                    //       // iterate through entries...
+                    //     //    var  myform = document.querySelector('cunsulta-frm');
+                    //     // var datos = new URLSearchParams(new FormData(myform).entries());
+                    //     // var url = form.attr('action');
+                    //     var datos= form.serialize();
+                    //     console.log("datos: " + datos);
+                    //     $.ajax({
+                    //         type: "POST",
+                    //         url: url,
+                    //         // data: form.serialize(), // serializes the form's elements.
+                    //         data: datos,
+                    //         success: function (data) {
+                    //             // alert(data); // show server response 
+                    //         }
+                    //     });
+                    // });
+
+                    function sendForm() {
+                    // (B1) FORM DATA - AUTO GET ALL FIELDS FROM "#DEMOA"
+                    // event.preventDefault()
+                    console.log("entrando a sendfrm");
+                    var htipo = document.getElementById("Tipo").value;
+                    var hEr =  document.getElementById("Er").value;
+                    var hEstado = document.getElementById("Estado").value;
+                    var hFini =  document.getElementById("Fini").value;
+                    var hFfin =  document.getElementById("Ffin").value;
+                    // event.preventDefault()
+                    if (!(htipo) || htipo.length == 0) {
+                        alert("Debe seleccionar el tipo de comprobante");
+                        return false;
+                    }
+                    var params = {}
+                    params.tipo =htipo;
+                    params.emiRec= hEr;
+                    params.estado = hEstado;
+                    params.fini  = hFini;
+                    params.ffin = hFfin;
+                    jsonDato = JSON.stringify(params);
+                        console.log(jsonDato);
+                    // (B2) AJAX FETCH
+                    fetch("/invoices-list", { method:"post", headers: {
+                            'Content-Type': 'application/json'
+                            }, body:jsonDato })
+                    .then(res => res.text()).then(htmlStr => {
+                        document.open();
+                        document.write(htmlStr);
+                        document.close();
+                        })// .then(res => res.text())
+                    .then(txt => console.log(txt))
+                    .catch(err => console.error(err));
+                    
+                    // (B3) PREVENT DEFAULT FORM SUBMIT
+                    return false;
+                    }
+                </script>
+
+                <script type="text/javascript">
+
+                    $(document).ready(function () {
+
+                        var dwbtn = {
+                            text: 'Descarga',
+                            action: function () {
+                                var fileKeysString = "uni";
+                                var newFileKeys = "dos";
+
+                                fetch('/download', { fileKeys: newFileKeys })
+                                    .then(async res => ({
+                                        filename: res.headers.get('content-disposition').split('filename=')[1],
+                                        blob: await res.blob()
+                                    }))
+                                    .then(resObj => {
+                                        // It is necessary to create a new blob object with mime-type explicitly set for all browsers except Chrome, but it works for Chrome too.
+                                        const newBlob = new Blob([resObj.blob], { type: 'application/octet-stream' });
+
+                                        // MS Edge and IE don't allow using a blob object directly as link href, instead it is necessary to use msSaveOrOpenBlob
+                                        if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                                            window.navigator.msSaveOrOpenBlob(newBlob);
+                                        } else {
+                                            // For other browsers: create a link pointing to the ObjectURL containing the blob.
+                                            const objUrl = window.URL.createObjectURL(newBlob);
+
+                                            let link = document.createElement('a');
+                                            link.href = objUrl;
+                                            link.download = resObj.filename;
+                                            link.click();
+
+                                            // For Firefox it is necessary to delay revoking the ObjectURL.
+                                            setTimeout(() => { window.URL.revokeObjectURL(objUrl); }, 250);
+                                        }
+                                    })
+                                    .catch((error) => {
+                                        console.log('DOWNLOAD ERROR', error);
+                                    });
+                            }
+                        }
+                        var resbtn = {
+                            text: 'Resumen',
+                            action: function () {
+                                alert(JSON.stringify(data[0]));
+                            }
+                        }
+
+                        $('#datatable-buttons thead tr')
+                            .clone(true)
+                            .addClass('filters')
+                            .appendTo('#datatable-buttons thead');
+
+
+                        $('#datatable-buttons').DataTable({
+                            scrollY: 300,
+                            scrollX: true,
+                            scrollCollapse: true,
+                            paging: false,
+                            orderCellsTop: true,
+                            fixedHeader: true,
+                            dom: 'Bfrtip',
+                            buttons: ['copy', 'excel', dwbtn, 'colvis'],
+                            fixedColumns: {
+                                left: 2
+                            },
+                            // columnDefs: [ {
+                            //     orderable: false,
+                            //     className: 'select-checkbox',
+                            //     targets:   0
+                            // } ],
+                            // select: {
+                            //     style:    'os',
+                            //     selector: 'td:first-child'
+                            // },
+                            order: [[1, 'asc']],
+                            initComplete: function () {
+                                var api = this.api();
+
+                                // For each column
+                                api
+                                    .columns()
+                                    .eq(0)
+                                    .each(function (colIdx) {
+                                        // Set the header cell to contain the input element
+                                        var cell = $('.filters th').eq(
+                                            $(api.column(colIdx).header()).index()
+                                        );
+                                        var title = $(cell).text();
+                                        $(cell).html('<input type="text" placeholder="' + title + '" />');
+
+                                        // On every keypress in this input
+                                        $(
+                                            'input',
+                                            $('.filters th').eq($(api.column(colIdx).header()).index())
+                                        )
+                                            .off('keyup change')
+                                            .on('change', function (e) {
+                                                // Get the search value
+                                                $(this).attr('title', $(this).val());
+                                                var regexr = '({search})'; //$(this).parents('th').find('select').val();
+
+                                                var cursorPosition = this.selectionStart;
+                                                // Search the column for that value
+                                                api
+                                                    .column(colIdx)
+                                                    .search(
+                                                        this.value != ''
+                                                            ? regexr.replace('{search}', '(((' + this.value + ')))')
+                                                            : '',
+                                                        this.value != '',
+                                                        this.value == ''
+                                                    )
+                                                    .draw();
+                                            })
+                                            .on('keyup', function (e) {
+                                                e.stopPropagation();
+
+                                                $(this).trigger('change');
+                                                $(this)
+                                                    .focus()[0]
+                                                    .setSelectionRange(cursorPosition, cursorPosition);
+                                            });
+                                    });
+                            },
+                        });
+                    });
+                </script>
+                <script type="text/javascript"> 
+                    window.addEventListener('load', () => {
+                        var now = new Date();
+                        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                      
+                        /* remove second/millisecond if needed - credit ref. https://stackoverflow.com/questions/24468518/html5-input-datetime-local-default-value-of-today-and-current-time#comment112871765_60884408 */
+                        now.setMilliseconds(null)
+                        now.setSeconds(null)
+                      
+                        document.getElementById('Fini').value = now.toISOString().slice(0, -1);
+                        document.getElementById('Ffin').value = now.toISOString().slice(0, -1);
+                      });
+</script>
+                <%- contentFor('BottomJs') %>
         
-        <div class="table-responsive mb-4">
-            <table class="table table-centered datatable dt-responsive nowrap table-card-list" style="border-collapse: collapse; border-spacing: 0 12px; width: 100%;">
-                <thead>
-                    <tr class="bg-transparent">
-                        <th style="width: 24px;">
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="invoicecheck">
-                                <label class="form-check-label" for="invoicecheck"></label>
-                            </div>
-                        </th>
-                        <th>Invoice ID</th>
-                        <th>Date</th>
-                        <th>Billing Name</th>
-                        <th>Amount</th>
-                        <th>Status</th>
-                        <th>Download Pdf</th>
-                        <th style="width: 120px;">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-
-                    <tr>
-                        <td>
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="invoicecheck1">
-                                <label class="form-check-label" for="invoicecheck1"></label>
-                            </div>
-                        </td>
-                        
-                        <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0131</a> </td>
-                        <td>
-                            10 Jul, 2020
-                        </td>
-                        <td>Connie Franco</td>
-                        
-                        <td>
-                            $141
-                        </td>
-                        <td>
-                            <div class="badge bg-soft-success font-size-12">Paid</div>
-                        </td>
-                        <td>
-                            <div>
-                                <button class="btn btn-light btn-sm w-xs">Pdf <i class="uil uil-download-alt ms-2"></i></button>
-                            </div>
-                        </td>
-                        
-                        <td>
-                            <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
-                            <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="invoicecheck2">
-                                <label class="form-check-label" for="invoicecheck2"></label>
-                            </div>
-                        </td>
-                        
-                        <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0130</a> </td>
-                        <td>
-                            09 Jul, 2020
-                        </td>
-                        <td>Paul Reynolds</td>
-                        
-                        <td>
-                            $153
-                        </td>
-                        <td>
-                            <div class="badge bg-soft-success font-size-12">Paid</div>
-                        </td>
-                        <td>
-                            <div>
-                                <button class="btn btn-light btn-sm w-xs">Pdf <i class="uil uil-download-alt ms-2"></i></button>
-                            </div>
-                        </td>
-                        
-                        <td>
-                            <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
-                            <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="invoicecheck3">
-                                <label class="form-check-label" for="invoicecheck3"></label>
-                            </div>
-                        </td>
-                        
-                        <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0129</a> </td>
-                        <td>
-                            09 Jul, 2020
-                        </td>
-                        <td>Ronald Patterson</td>
-                        
-                        <td>
-                            $220
-                        </td>
-                        <td>
-                            <div class="badge bg-soft-warning font-size-12">Pending</div>
-                        </td>
-                        <td>
-                            <div>
-                                <button class="btn btn-light btn-sm w-xs">Pdf <i class="uil uil-download-alt ms-2"></i></button>
-                            </div>
-                        </td>
-                        
-                        <td>
-                            <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
-                            <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="invoicecheck4">
-                                <label class="form-check-label" for="invoicecheck4"></label>
-                            </div>
-                        </td>
-                        
-                        <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0128</a> </td>
-                        <td>
-                            08 Jul, 2020
-                        </td>
-                        <td>Adella Perez</td>
-                        
-                        <td>
-                            $175
-                        </td>
-                        <td>
-                            <div class="badge bg-soft-success font-size-12">Paid</div>
-                        </td>
-                        <td>
-                            <div>
-                                <button class="btn btn-light btn-sm w-xs">Pdf <i class="uil uil-download-alt ms-2"></i></button>
-                            </div>
-                        </td>
-                        
-                        <td>
-                            <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
-                            <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="invoicecheck5">
-                                <label class="form-check-label" for="invoicecheck5"></label>
-                            </div>
-                        </td>
-                        
-                        <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0127</a> </td>
-                        <td>
-                            07 Jul, 2020
-                        </td>
-                        <td>Theresa Mayers</td>
-                        
-                        <td>
-                            $160
-                        </td>
-                        <td>
-                            <div class="badge bg-soft-success font-size-12">Paid</div>
-                        </td>
-                        <td>
-                            <div>
-                                <button class="btn btn-light btn-sm w-xs">Pdf <i class="uil uil-download-alt ms-2"></i></button>
-                            </div>
-                        </td>
-                        
-                        <td>
-                            <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
-                            <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="invoicecheck6">
-                                <label class="form-check-label" for="invoicecheck6"></label>
-                            </div>
-                        </td>
-                        
-                        <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0126</a> </td>
-                        <td>
-                            06 Jul, 2020
-                        </td>
-                        <td>Michael Wallace</td>
-                        
-                        <td>
-                            $150
-                        </td>
-                        <td>
-                            <div class="badge bg-soft-success font-size-12">Paid</div>
-                        </td>
-                        <td>
-                            <div>
-                                <button class="btn btn-light btn-sm w-xs">Pdf <i class="uil uil-download-alt ms-2"></i></button>
-                            </div>
-                        </td>
-                        
-                        <td>
-                            <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
-                            <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="invoicecheck7">
-                                <label class="form-check-label" for="invoicecheck7"></label>
-                            </div>
-                        </td>
-                        
-                        <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0125</a> </td>
-                        <td>
-                            05 Jul, 2020
-                        </td>
-                        <td>Oliver Gonzales</td>
-                        
-                        <td>
-                            $165
-                        </td>
-                        <td>
-                            <div class="badge bg-soft-warning font-size-12">Pending</div>
-                        </td>
-                        <td>
-                            <div>
-                                <button class="btn btn-light btn-sm w-xs">Pdf <i class="uil uil-download-alt ms-2"></i></button>
-                            </div>
-                        </td>
-                        
-                        <td>
-                            <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
-                            <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="invoicecheck8">
-                                <label class="form-check-label" for="invoicecheck8"></label>
-                            </div>
-                        </td>
-                        
-                        <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0124</a> </td>
-                        <td>
-                            05 Jul, 2020
-                        </td>
-                        <td>David Burke</td>
-                        
-                        <td>
-                            $170
-                        </td>
-                        <td>
-                            <div class="badge bg-soft-success font-size-12">Paid</div>
-                        </td>
-                        <td>
-                            <div>
-                                <button class="btn btn-light btn-sm w-xs">Pdf <i class="uil uil-download-alt ms-2"></i></button>
-                            </div>
-                        </td>
-                        
-                        <td>
-                            <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
-                            <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="invoicecheck9">
-                                <label class="form-check-label" for="invoicecheck9"></label>
-                            </div>
-                        </td>
-                        
-                        <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0123</a> </td>
-                        <td>
-                            04 Jul, 2020
-                        </td>
-                        <td>Willie Verner</td>
-                        
-                        <td>
-                            $140
-                        </td>
-                        <td>
-                            <div class="badge bg-soft-warning font-size-12">Pending</div>
-                        </td>
-                        <td>
-                            <div>
-                                <button class="btn btn-light btn-sm w-xs">Pdf <i class="uil uil-download-alt ms-2"></i></button>
-                            </div>
-                        </td>
-                        
-                        <td>
-                            <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
-                            <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="invoicecheck10">
-                                <label class="form-check-label" for="invoicecheck10"></label>
-                            </div>
-                        </td>
-                        
-                        <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0122</a> </td>
-                        <td>
-                            03 Jul, 2020
-                        </td>
-                        <td>Felix Perry</td>
-                        
-                        <td>
-                            $155
-                        </td>
-                        <td>
-                            <div class="badge bg-soft-success font-size-12">Paid</div>
-                        </td>
-                        <td>
-                            <div>
-                                <button class="btn btn-light btn-sm w-xs">Pdf <i class="uil uil-download-alt ms-2"></i></button>
-                            </div>
-                        </td>
-                        
-                        <td>
-                            <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
-                            <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="invoicecheck11">
-                                <label class="form-check-label" for="invoicecheck11"></label>
-                            </div>
-                        </td>
-                        
-                        <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0121</a> </td>
-                        <td>
-                            02 Jul, 2020
-                        </td>
-                        <td>Virgil Kelley</td>
-                        
-                        <td>
-                            $165
-                        </td>
-                        <td>
-                            <div class="badge bg-soft-success font-size-12">Paid</div>
-                        </td>
-                        <td>
-                            <div>
-                                <button class="btn btn-light btn-sm w-xs">Pdf <i class="uil uil-download-alt ms-2"></i></button>
-                            </div>
-                        </td>
-                        
-                        <td>
-                            <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
-                            <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="form-check text-center">
-                                <input type="checkbox" class="form-check-input" id="invoicecheck12">
-                                <label class="form-check-label" for="invoicecheck12"></label>
-                            </div>
-                        </td>
-                        
-                        <td><a href="javascript: void(0);" class="text-dark fw-bold">#MN0120</a> </td>
-                        <td>
-                            02 Jul, 2020
-                        </td>
-                        <td>Matthew Lawler</td>
-                        
-                        <td>
-                            $170
-                        </td>
-                        <td>
-                            <div class="badge bg-soft-warning font-size-12">Pending</div>
-                        </td>
-                        <td>
-                            <div>
-                                <button class="btn btn-light btn-sm w-xs">Pdf <i class="uil uil-download-alt ms-2"></i></button>
-                            </div>
-                        </td>
-                        
-                        <td>
-                            <a href="javascript:void(0);" class="px-3 text-primary"><i class="uil uil-pen font-size-18"></i></a>
-                            <a href="javascript:void(0);" class="px-3 text-danger"><i class="uil uil-trash-alt font-size-18"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<!-- end row -->
-
-<%- contentFor('FooterJs') %>
-
-<!-- bootstrap datepicker -->
-<script src="public/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-
-<!-- Required datatable js -->
-<script src="public/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="public/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-
-<!-- Responsive examples -->
-<script src="public/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="public/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
-
-<!-- init js -->
-<script src="public/assets/js/pages/ecommerce-datatables.init.js"></script>
-
-<%- contentFor('BottomJs') %>

@@ -1,0 +1,373 @@
+<%- contentFor('HeaderCss') %>
+    <!-- DataTables -->
+    <link href="public/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" />
+    <!-- <link href="public/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" /> -->
+
+    <!-- Responsive datatable examples -->
+    <link href="public/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="public/assets/libs/datatables.net-editor/css/editor.dataTables.min.css" rel="stylesheet" />
+    <link href="public/assets/libs/datatables.net-editor/css/dataTables.dateTime.min.css" rel="stylesheet" />
+    <link href="public/assets/libs/datatables.net-editor/css/buttons.dataTables.min.css" rel="stylesheet" />
+    <!-- nuevo -->
+    <link href="public/assets/libs/datatables.net/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="public/assets/libs/datatables.net/css/fixedColumns.dataTables.min.css" rel="stylesheet"
+        type="text/css" />
+    <link href="public/assets/libs/datatables.net-select/css/select.dataTables.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <%- contentFor('breadcrumb') %>
+
+        <!-- start page title -->
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title-box d-flex align-items-center justify-content-between">
+                    <h4 class="mb-0">Users</h4>
+
+                    <div class="page-title-right">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item"><a href="javascript: void(0);">Configurations</a></li>
+                            <li class="breadcrumb-item active">Usuarios</li>
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- end page title -->
+
+        <%- contentFor('body') %>
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Alta de usuarios</h4>
+                            <p class="card-title-desc">Ingrese información.</p>
+                            <form class="needs-validation" novalidate>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="validationCustom01">Nombre</label>
+                                            <input type="text" class="form-control" id="validationCustom01"
+                                                placeholder="Nombre" value="" required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="validationCustom01">Apellido Paterno</label>
+                                            <input type="text" class="form-control" id="validationCustom01"
+                                                placeholder="Apellido Paterno" value="" required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="col-md-3">
+                                            <label class="form-label"> Apellido Materno</label>
+                                            <input type="text" class="form-control" id="validationCustom01"
+                                                placeholder="Apellido Materno" value="" required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="validationCustom02">Usuario</label>
+                                            <input type="text" class="form-control" id="validationCustom02"
+                                                placeholder="Usuario" value="" required>
+                                            <div class="valid-feedback">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="validationCustom03">Password</label>
+                                            <input type="password" class="form-control" id="validationCustom03"
+                                                placeholder="Password" required>
+                                            <div class="invalid-feedback">
+                                                Please provide a Password.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="validationCustom04">Password</label>
+                                            <input type="password" class="form-control" id="validationCustom04"
+                                                placeholder="Password" required>
+                                            <div class="invalid-Password">
+                                                Please provide a valid Password.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="validationCustom05">Correo</label>
+                                            <input type="email" class="form-control" id="validationCustom05"
+                                                placeholder="Correo" required>
+                                            <div class="invalid-feedback">
+                                                Please provide a valid email.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- tabla row -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="card">
+                                            <div class="card-body">
+
+                                                <h4 class="card-title">Permisos</h4>
+                                                <!-- <button id="addRow">Agregar permiso</button> -->
+                                                <p class="card-title-desc">seleccione la subsidiaria y acceso al tipo de
+                                                    cfdi.</p>
+
+                                                <div class="table-responsive">
+                                                    <!-- <table id="permissiontbl" class="display">  -->
+                                                    <table id="permissiontbl"
+                                                        class="table table-editable table-nowrap align-middle table-edits">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>ID</th>
+                                                                <th>Subsidiaria</th>
+                                                                <th>Age</th>
+                                                                <th>Gender</th>
+                                                                <th>Edit</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <!-- <tr data-id="1">
+                                                                <td data-field="id" style="width: 80px">1</td>
+                                                                <td data-field="name">David McHenry</td>
+                                                                <td data-field="age">24</td>
+                                                                <td data-field="gender">Male</td>
+                                                                <td style="width: 100px">
+                                                                    <a class="btn btn-outline-secondary btn-sm edit"
+                                                                        title="Edit">
+                                                                        <i class="fas fa-pencil-alt"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-id="2">
+                                                                <td data-field="id">2</td>
+                                                                <td data-field="name">Frank Kirk</td>
+                                                                <td data-field="age">22</td>
+                                                                <td data-field="gender">Male</td>
+                                                                <td>
+                                                                    <a class="btn btn-outline-secondary btn-sm edit"
+                                                                        title="Edit">
+                                                                        <i class="fas fa-pencil-alt"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr data-id="3">
+                                                                <td data-field="id">3</td>
+                                                                <td data-field="name">Rafael Morales</td>
+                                                                <td data-field="age">26</td>
+                                                                <td data-field="gender">Male</td>
+                                                                <td>
+                                                                    <a class="btn btn-outline-secondary btn-sm edit"
+                                                                        title="Edit">
+                                                                        <i class="fas fa-pencil-alt"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr> -->
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div> <!-- end col -->
+                                </div> <!-- end row -->
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="invalidCheck"
+                                                    required>
+                                                <label class="form-check-label" for="invalidCheck">Agree to terms and
+                                                    conditions</label>
+                                                <div class="invalid-feedback">
+                                                    You must agree before submitting.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- end card -->
+                </div> <!-- end col -->
+
+            </div>
+            <!-- end row -->
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="composemodal" tabindex="-1" role="dialog" aria-labelledby="composemodalTitle"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="composemodalTitle">New Message</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3">
+                                    <input type="email" class="form-control" placeholder="To">
+                                </div>
+
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" placeholder="Subject">
+                                </div>
+                                <div class="mb-3">
+                                    <form method="post">
+                                        <textarea id="email-editor" name="area"></textarea>
+                                    </form>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Send <i
+                                    class="fab fa-telegram-plane ms-1"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%- contentFor('FooterJs') %>
+
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        // Object that will contain the local state
+                        let todo = {};
+
+                        // Create or update the todo localStorage entry
+                        if (localStorage.getItem('xtodo')) {
+                            todo = JSON.parse(localStorage.getItem('xtodo'));
+                        }
+
+                        // Set up the editor
+                        var editor = new DataTable.Editor({
+                            table: '#permissiontbl',
+                            fields: [
+                                {
+                                    label: 'ID:',
+                                    name: 'ID'
+                                },
+                                {
+                                    label: 'Subsidiaria:',
+                                    name: 'Subsidiaria'
+                                }, 
+                                {
+                                    label: 'Age:',
+                                    name: 'Age'
+                                },
+                                {
+                                    label: 'Gender:',
+                                    name: 'Gender'
+                                }, 
+                                {
+                                    label: 'xEdit:',
+                                    name: 'xEdit'
+                                }
+                            ],
+                            ajax: function (method, url, d, successCallback, errorCallback) {
+                                let output = { data: [] };
+
+                                if (d.action === 'create') {
+                                    // Create new row(s), using the current time and loop index as
+                                    // the row id
+                                    let dateKey = +new Date();
+
+                                    for (const [key, value] of Object.entries(d.data)) {
+                                        let id = dateKey + '' + key;
+
+                                        value.DT_RowId = id;
+                                        todo[id] = value;
+                                        output.data.push(value);
+                                    }
+                                }
+                                else if (d.action === 'edit') {
+                                    // Update each edited item with the data submitted
+                                    for (const [id, value] of Object.entries(d.data)) {
+                                        value.DT_RowId = id;
+                                        Object.assign(todo[id], value);
+                                        output.data.push(todo[id]);
+                                    }
+                                }
+                                else if (d.action === 'remove') {
+                                    // Remove items from the object
+                                    for (const id of Object.keys(d.data)) {
+                                        delete todo[id];
+                                    }
+                                }
+
+                                // Store the latest `todo` object for next reload
+                                localStorage.setItem('xtodo', JSON.stringify(xtodo));
+
+                                // Show Editor what has changed
+                                successCallback(output);
+                            }
+                        });
+
+                        // Initialise the DataTable
+                        new DataTable('#permissiontbl', {
+                            buttons: [
+                                { extend: 'create', editor },
+                                { extend: 'edit', editor },
+                                { extend: 'remove', editor }
+                            ],
+                            columns: [{ data: 'ID' }, { data: 'Subsidiaria' }, { data: 'Age' }, { data: 'Gender' }, { data: 'xEdit' }],
+                            data: Object.values(todo),
+                            dom: 'Bfrtip',
+                            select: true
+                        });
+
+                    });
+                </script>
+
+                <%- contentFor('BottomJs') %>
+
+                    <!-- Table Editable plugin -->
+                    <!-- <script src="public/assets/libs/table-edits/build/table-edits.min.js"></script> -->
+
+                    <!-- <script src="public/assets/js/pages/table-editable.int.js"></script> -->
+
+                    <!-- Required datatable js -->
+                    <script src="public/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+                    <!-- <script src="public/assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script> -->
+                    <!-- Buttons examples -->
+                    <!-- <script src="public/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+                    <script src="public/assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script> -->
+                    <script src="public/assets/libs/jszip/jszip.min.js"></script>
+                    <script src="public/assets/libs/pdfmake/build/pdfmake.min.js"></script>
+                    <script src="public/assets/libs/pdfmake/build/vfs_fonts.js"></script>
+                    <!-- <script src="public/assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+                    <script src="public/assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+                    <script src="public/assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script> -->
+                    <!-- <script src="public/assets/libs/table-edits/build/table-edits.min.js"></script> -->
+                    <!-- Responsive examples -->
+                    <script src="public/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+                    <script src="public/assets/libs/datatables.net-editor/js/dataTables.select.min.js"> </script>
+                    <script src="public/assets/libs/datatables.net-editor/js/dataTables.dateTime.min.js"> </script>
