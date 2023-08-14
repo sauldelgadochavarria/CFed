@@ -42,7 +42,7 @@ const  cspDirectives= {
 var app = require('express')();
 const helmet = require("helmet");
 const cspDefaults = helmet.contentSecurityPolicy.getDefaultDirectives();
-console.log("DIRECTIVAS: "+JSON.stringify(cspDefaults));
+// console.log("DIRECTIVAS: "+JSON.stringify(cspDefaults));
 delete cspDefaults['upgrade-insecure-requests'];
 
 app.use(  helmet.contentSecurityPolicy({

@@ -12,6 +12,7 @@ var regimens = require('../models/regimens.js')
 const admz = require('adm-zip');
 const fs = require('fs');
 var subsidiaries = require('../models/subsidiaries.js');
+var permisos = require('../models/permisions.js');
 var users = require('../models/User.js');
 // const ingreso = mongoose.model( subsidiaries);
 // nuevo conecta a bd
@@ -113,6 +114,7 @@ module.exports = function (app) {
             { Name: "Zorita Serrano", Positiion: "Software Engineer", Office: "San Francisco", Age: 56, StartDate: "01/06/2012", Salary: "$115,000" }];
             return employees
       }
+      // users
       async function getUsers(req) {
             try {
                   const coll = db.collection("users");
@@ -125,6 +127,64 @@ module.exports = function (app) {
             }
             return users
       }
+      async function setUser(req) {
+            try {
+                  // console.log(req.body)
+                  const myusr = users.model('users', users);
+                  const nuser = new myusr(req.body);
+                  await nuser.save();
+            } catch (err) {
+                  console.error(err);
+                  return [];
+
+            }
+      }
+      async function getUser(req) {
+            try {
+                  // console.log(req.body)
+                  const myuser = mongoose.model('users', users);
+                  var muser = myuser.findById(req)
+                  // var mysub =await nsub.save();
+                  return muser
+            } catch (err) {
+                  console.error(err);
+                  return [];
+
+            }
+      }
+      async function updateUser(req) {
+            try {
+
+                  var datos = req.body;
+                  var id = datos._id;
+                  console.log("entrando a upd:" + datos._id + '-' + datos.razonSocial)
+                  delete datos._id
+                  try {
+                        console.log('new udtresult DATOS::' + JSON.stringify(datos));
+                        console.log('new udtresult DATOS id::' + id);
+                        const updatedResult = await users.findByIdAndUpdate(
+                              { _id: id },
+                              datos,
+                        );
+                        console.log('new udtresult:' + updatedResult);
+                  } catch (error) {
+                        console.log(error);
+                  }
+
+                  console.log("Saliendo de a upd:" + updatedResult)
+                  return updatedResult
+                  // var datos = req.body;
+                  // delete  datos._id
+                  // const mysub = mongoose.model('subsidiaries', subsidiaries.subsidiary);
+                  // var doc =  mysub.findByIdAndUpdate(req.body._id, req.body)
+                  // await doc.save();
+            } catch (err) {
+                  console.error(err);
+                  return [];
+
+            }
+      }
+      // subsidiaries
       async function genSubsidiaries(req) {
             // var subsidiaries = [
             //       // {
@@ -211,6 +271,7 @@ module.exports = function (app) {
 
             }
       }
+      // invioces
       function procesainvoices(lcfd) {
 
             result = [];
@@ -478,6 +539,7 @@ module.exports = function (app) {
       });
 
       // Config
+      // subsidiaries
       app.get('/config-subsidiaries', isUserAllowed, function (req, res) {
             res.locals = { title: 'Subsidiaries' };
             // var subsidiaries = genSubsidiaries(req);
@@ -562,6 +624,7 @@ module.exports = function (app) {
                         console.log(JSON.stringify('pagosvacio'));
                   });
       });
+      // Users
       app.get('/config-users', isUserAllowed, function (req, res) {
             res.locals = { title: 'Usuarios' };
             getUsers(req.body)
@@ -579,8 +642,71 @@ module.exports = function (app) {
       });
       app.get('/config-add-users', isUserAllowed, function (req, res) {
             res.locals = { title: 'Agrega Usuario' };
-            res.render('Configurations/config-add-users');
+            res.render('Configurations/config-add-users', { "permisos": permisos });
       });
+      app.post('/config-add-users/', isUserAllowed, function (req, res) {
+            res.locals = { title: 'Users' };
+            setUser(req)
+                  .then((subsidiaries) => {
+                        console.log("ok")
+                        // res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
+                        getUsers(req.body)
+                              .then((subsidiaries) => {
+                                    //      res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
+                                    // res.redirect(302,'/config-subsidiaries');
+                                    var respuesta ='ok'
+                                    res.send({"respuesta":respuesta});
+                              })
+                              .catch((err) => {
+                                    console.log(JSON.stringify('setUser : '+err));
+                              });
+                  })
+                  .catch((err) => {
+                        console.log("error al guardar setUser");
+                  });
+            console.log(JSON.stringify(req.body));
+
+      }); 
+      app.get('/config-update-users', isUserAllowed, function (req, res) {
+            // req
+            console.log("entre:" + req.query.id)
+            var subid = req.query.id
+            const mysub = mongoose.model('users', subsidiaries.subsidiary);
+            // const nsub = new mysub(req.body)
+            getUser(subid)
+                  .then((usrs) => {
+                        console.log(usrs);
+                        res.locals = { title: 'Edit Users' };
+                        console.log("users a editar:"+JSON.stringify(usrs));
+                        res.render('Configurations/config-update-users', { "users": usrs, "permisos": permisos });
+                  })
+                  .catch((err) => {
+                        console.log(JSON.stringify('no encontrada subsidiary'));
+                  });
+
+            // res.locals = { title: 'Agrega Subsidiaries' };
+            // res.render('Configurations/config-update-subsidiaries');
+      });
+      app.post('/config-update-users/', isUserAllowed, function (req, res) {
+            res.locals = { title: 'Users' };
+            updateUser(req)
+                  .then((subsidiaries) => {
+                        console.log("update users ok")
+                        // res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
+                  })
+                  .catch((err) => {
+                        console.log("error al guardar users");
+                  });
+            console.log(JSON.stringify(req.body));
+            getUsers(req.body)
+                  .then((usrs) => {
+                        res.render('Configurations/config-users', { "users": usrs });
+                  })
+                  .catch((err) => {
+                        console.log(JSON.stringify('users'+err));
+                  });
+      }); 
+      // programs  ?
       app.get('/config-programs', isUserAllowed, function (req, res) {
             res.locals = { title: 'Configurarion Programs' };
             res.render('Configurations/config-programs');
