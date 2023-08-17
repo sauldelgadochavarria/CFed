@@ -331,6 +331,7 @@
                         // event.preventDefault()
                         console.log("entrando a sendfrm");
                         // var _id = document.getElementById("subsidiaryid").value;
+                        var _id = document.getElementById("subsidiaryid").value;
                         var razonSocial = document.getElementById("validationRS").value;
                         var rfc = document.getElementById("validationRFC").value;
                         var direccion = document.getElementById("validationDireccion").value;
@@ -372,10 +373,11 @@
                         params.fiel = fiel;
                         params.key = key;
                         params.psw = psw;
+                        params._id = _id;
                         jsonDato = JSON.stringify(params);
                         console.log('enviado:' + jsonDato);
                         // (B2) AJAX FETCH
-                        fetch("/config-add-subsidiaries", {
+                        fetch("/config-update-Subsidiaries", {
                             method: "post",
                             // redirect: 'follow',
                             // mode: 'no-cors',

@@ -8,14 +8,15 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var config = require('../config');
 var payments = require('../Libs/detalleCfidiPagos.js');
-var regimens = require('../models/regimens.js')
+var regimens = require('../models/regimens.js');
 const admz = require('adm-zip');
 const fs = require('fs');
 var subsidiaries = require('../models/subsidiaries.js');
 var permisos = require('../models/permisions.js');
 var users = require('../models/User.js');
-// var usersSchema = require('../models/User.js');
-// const ingreso = mongoose.model( subsidiaries);
+const user_instance_controller = require("../controllers/usersController.js");
+const subsidiary_instance_controller = require("../controllers/subsidiariesController.js");
+
 // nuevo conecta a bd
 // var User = require('../models/User')
 mongoose.Promise = global.Promise
@@ -459,7 +460,7 @@ module.exports = function (app) {
             res.locals = { title: 'Preloader' };
             res.render('Dashboard/index', { layout: 'layoutsHPreloader' });
       });
-
+      app.get('/layouts-')
 
       // Color Theme vertical
       app.get("/vertical-dark", isUserAllowed, function (req, res) {
@@ -482,20 +483,19 @@ module.exports = function (app) {
             res.locals = { title: 'Horizontal Rtl' };
             res.render("Dashboard/index", { layout: "horizontal-rtl-layout" });
       });
-
       // Calendar
       app.get('/calendar', isUserAllowed, function (req, res) {
             res.locals = { title: 'Calendar' };
             res.render('Calendar/calendar');
       });
-
       // Chat
       app.get('/chat', isUserAllowed, function (req, res) {
             res.locals = { title: 'Chat' };
             res.render('Chat/chat');
       });
-
       // Ecomerce
+      //#region 
+
       app.get('/ecommerce-products', isUserAllowed, function (req, res) {
             res.locals = { title: 'Products' };
             res.render('Ecommerce/ecommerce-products');
@@ -538,182 +538,136 @@ module.exports = function (app) {
             res.locals = { title: 'Email Read' };
             res.render('Email/email-read');
       });
-
+//#endregion
       // Config
-      // subsidiaries
-      app.get('/config-subsidiaries', isUserAllowed, function (req, res) {
-            res.locals = { title: 'Subsidiaries' };
-            // var subsidiaries = genSubsidiaries(req);
-            // res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
-            genSubsidiaries(req.body)
-                  .then((subsidiaries) => {
-                        console.log('subsidiaries: ' + subsidiaries.length);
-                        res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
-                        // var result = procesainvoices(invoices)
-                        // console.log(JSON.stringify(result));
-                        // res.locals.invoices = result
-                        // res.render('Invoice/invoices-list.ejs', { "invoices": result });
-                  })
-                  .catch((err) => {
-                        console.log(JSON.stringify('pagosvacio'));
-                  });
-      });
 
+      // subsidiaries
+      app.get('/config-subsidiaries', isUserAllowed, subsidiary_instance_controller.subsidiary_getsubsidiaries_get);
       app.get('/config-add-subsidiaries', isUserAllowed, function (req, res) {
             res.locals = { title: 'Agrega Subsidiaries' };
             res.render('Configurations/config-add-subsidiaries', { "regimen": regimens });
       });
-      app.post('/config-add-subsidiaries/', isUserAllowed, function (req, res) {
-            res.locals = { title: 'Subsidiaries' };
-            setSubsidiaries(req)
-                  .then((subsidiaries) => {
-                        console.log("ok")
-                        // res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
-                        genSubsidiaries(req.body)
-                              .then((subsidiaries) => {
-                                    //      res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
-                                    // res.redirect(302,'/config-subsidiaries');
-                                    var respuesta ='ok'
-                                    res.send({"respuesta":respuesta});
-                              })
-                              .catch((err) => {
-                                    console.log(JSON.stringify('genSubsidiaries'+err));
-                              });
-                  })
-                  .catch((err) => {
-                        console.log("error al guardar subsidiaries");
-                  });
-            console.log(JSON.stringify(req.body));
+      app.post('/config-add-subsidiaries/', isUserAllowed, subsidiary_instance_controller.subsidiary_create_post); 
+      // app.post('/old_config-add-subsidiaries/', isUserAllowed, function (req, res) {
+      //       res.locals = { title: 'Subsidiaries' };
+      //       setSubsidiaries(req)
+      //             .then((subsidiaries) => {
+      //                   console.log("ok")
+      //                   // res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
+      //                   genSubsidiaries(req.body)
+      //                         .then((subsidiaries) => {
+      //                               //      res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
+      //                               // res.redirect(302,'/config-subsidiaries');
+      //                               var respuesta ='ok'
+      //                               res.send({"respuesta":respuesta});
+      //                         })
+      //                         .catch((err) => {
+      //                               console.log(JSON.stringify('genSubsidiaries'+err));
+      //                         });
+      //             })
+      //             .catch((err) => {
+      //                   console.log("error al guardar subsidiaries");
+      //             });
+      //       console.log(JSON.stringify(req.body));
 
-      });
-      app.get('/config-update-subsidiaries', isUserAllowed, function (req, res) {
-            // req
-            console.log("entre:" + req.query.id)
-            var subid = req.query.id
-            const mysub = mongoose.model('subsidiaries', subsidiaries.subsidiary);
-            // const nsub = new mysub(req.body)
-            getSubsidiary(subid)
-                  .then((subsidiary) => {
-                        console.log(subsidiary);
-                        res.locals = { title: 'Edit Subsidiaries' };
-                        console.log("subsidiaria a editar:"+JSON.stringify(subsidiary));
-                        res.render('Configurations/config-update-subsidiaries', { "subsidiary": subsidiary, "regimen": regimens });
-                  })
-                  .catch((err) => {
-                        console.log(JSON.stringify('no encontrada subsidiary'));
-                  });
+      // });
+      app.get('/config-update-subsidiaries', isUserAllowed, subsidiary_instance_controller.subsidiary_updatesubsidiaries_get)
+      // app.get('/config-update-subsidiaries', isUserAllowed, function (req, res) {
+      //       // req
+      //       console.log("entre:" + req.query.id)
+      //       var subid = req.query.id
+      //       const mysub = mongoose.model('subsidiaries', subsidiaries.subsidiary);
+      //       // const nsub = new mysub(req.body)
+      //       getSubsidiary(subid)
+      //             .then((subsidiary) => {
+      //                   console.log(subsidiary);
+      //                   res.locals = { title: 'Edit Subsidiaries' };
+      //                   console.log("subsidiaria a editar:"+JSON.stringify(subsidiary));
+      //                   res.render('Configurations/config-update-subsidiaries', { "subsidiary": subsidiary, "regimen": regimens });
+      //             })
+      //             .catch((err) => {
+      //                   console.log(JSON.stringify('no encontrada subsidiary'));
+      //             });
 
-            // res.locals = { title: 'Agrega Subsidiaries' };
-            // res.render('Configurations/config-update-subsidiaries');
-      });
-      app.post('/config-update-subsidiaries/', isUserAllowed, function (req, res) {
-            res.locals = { title: 'Subsidiaries' };
-            updateSubsidiary(req)
-                  .then((subsidiaries) => {
-                        console.log("update ok")
-                        // res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
-                  })
-                  .catch((err) => {
-                        console.log("error al guardar subsidiaries");
-                  });
-            console.log(JSON.stringify(req.body));
-            genSubsidiaries(req.body)
-                  .then((subsidiaries) => {
-                        res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
-                  })
-                  .catch((err) => {
-                        console.log(JSON.stringify('pagosvacio'));
-                  });
-      });
+      //       // res.locals = { title: 'Agrega Subsidiaries' };
+      //       // res.render('Configurations/config-update-subsidiaries');
+      // });
+      app.post('/config-update-subsidiaries/', isUserAllowed, subsidiary_instance_controller.subsidiary_updatesubsidiaries_post)
+      // app.post('/config-update-subsidiaries/', isUserAllowed, function (req, res) {
+      //       res.locals = { title: 'Subsidiaries' };
+      //       updateSubsidiary(req)
+      //             .then((subsidiaries) => {
+      //                   console.log("update ok")
+      //                   // res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
+      //             })
+      //             .catch((err) => {
+      //                   console.log("error al guardar subsidiaries");
+      //             });
+      //       console.log(JSON.stringify(req.body));
+      //       genSubsidiaries(req.body)
+      //             .then((subsidiaries) => {
+      //                   res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
+      //             })
+      //             .catch((err) => {
+      //                   console.log(JSON.stringify('pagosvacio'));
+      //             });
+      // });
       // Users
-      app.get('/config-users', isUserAllowed, function (req, res) {
-            res.locals = { title: 'Usuarios' };
-            getUsers(req.body)
-                  .then((users) => {
-                        console.log('getusers: ' + users.length+ ' '+JSON.stringify(users));
-                        res.render('Configurations/config-users', { "users": users });
-                        // var result = procesainvoices(invoices)
-                        // console.log(JSON.stringify(result));
-                        // res.locals.invoices = result
-                        // res.render('Invoice/invoices-list.ejs', { "invoices": result });
-                  })
-                  .catch((err) => {
-                        console.log(JSON.stringify('pagosvacio'));
-                  });
-      });
-      app.get('/config-add-users', isUserAllowed, function (req, res) {
-            res.locals = { title: 'Agrega Usuario' };
-            genSubsidiaries(req.body)
-                  .then((subsidiaries) => {
-                        res.render('Configurations/config-add-users', { "permisos": permisos, "subsidiaries": subsidiaries });
-                  })
-                  .catch((err) => {
-                        console.log(JSON.stringify('pagosvacio'));
-                  });
-            // res.render('Configurations/config-add-users', { "permisos": permisos,  });
-      });
-      app.post('/config-add-users/', isUserAllowed, function (req, res) {
-            res.locals = { title: 'Users' };
-            setUser(req)
-                  .then((subsidiaries) => {
-                        console.log("ok alta correctoa")
-                        // res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
-                        getUsers(req.body)
-                              .then((subsidiaries) => {
-                                    //      res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
-                                    // res.redirect(302,'/config-subsidiaries');
-                                    var respuesta ='ok'
-                                    res.send({"respuesta":respuesta});
-                              })
-                              .catch((err) => {
-                                    console.log(JSON.stringify('setUser : '+err));
-                              });
-                  })
-                  .catch((err) => {
-                        console.log("error al guardar setUser");
-                  });
-            console.log(JSON.stringify(req.body));
+      app.get('/config-users',isUserAllowed, user_instance_controller.user_getusers_get) ;
 
-      }); 
-      app.get('/config-update-users', isUserAllowed, function (req, res) {
-            // req
-            console.log("entre:" + req.query.id)
-            var subid = req.query.id
-            const mysub = mongoose.model('users', subsidiaries.subsidiary);
-            // const nsub = new mysub(req.body)
-            getUser(subid)
-                  .then((usrs) => {
-                        console.log(usrs);
-                        res.locals = { title: 'Edit Users' };
-                        console.log("users a editar:"+JSON.stringify(usrs));
-                        res.render('Configurations/config-update-users', { "users": usrs, "permisos": permisos });
-                  })
-                  .catch((err) => {
-                        console.log(JSON.stringify('no encontrada subsidiary'));
-                  });
+      // app.get('/config-add-users', isUserAllowed, function (req, res) {
+      //       res.locals = { title: 'Agrega Usuario' };
+      //       genSubsidiaries(req.body)
+      //             .then((subsidiaries) => {
+      //                   res.render('Configurations/config-add-users', { "permisos": permisos, "subsidiaries": subsidiaries });
+      //             })
+      //             .catch((err) => {
+      //                   console.log(JSON.stringify('pagosvacio'));
+      //             });
+      //       // res.render('Configurations/config-add-users', { "permisos": permisos,  });
+      // });
+      app.post('/config-add-users',isUserAllowed, user_instance_controller.user_create_post) ;
+      app.get('/config-update-users', isUserAllowed, user_instance_controller.user_update_get);
+      // app.get('/config-update-users', isUserAllowed, function (req, res) {
+      //       // req
+      //       console.log("entre:" + req.query.id)
+      //       var subid = req.query.id
+      //       const mysub = mongoose.model('users', subsidiaries.subsidiary);
+      //       // const nsub = new mysub(req.body)
+      //       getUser(subid)
+      //             .then((usrs) => {
+      //                   console.log(usrs);
+      //                   res.locals = { title: 'Edit Users' };
+      //                   console.log("users a editar:"+JSON.stringify(usrs));
+      //                   res.render('Configurations/config-update-users', { "users": usrs, "permisos": permisos });
+      //             })
+      //             .catch((err) => {
+      //                   console.log(JSON.stringify('no encontrada subsidiary'));
+      //             });
 
-            // res.locals = { title: 'Agrega Subsidiaries' };
-            // res.render('Configurations/config-update-subsidiaries');
-      });
-      app.post('/config-update-users/', isUserAllowed, function (req, res) {
-            res.locals = { title: 'Users' };
-            updateUser(req)
-                  .then((subsidiaries) => {
-                        console.log("update users ok")
-                        // res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
-                  })
-                  .catch((err) => {
-                        console.log("error al guardar users");
-                  });
-            console.log(JSON.stringify(req.body));
-            getUsers(req.body)
-                  .then((usrs) => {
-                        res.render('Configurations/config-users', { "users": usrs });
-                  })
-                  .catch((err) => {
-                        console.log(JSON.stringify('users'+err));
-                  });
-      }); 
+      //       // res.locals = { title: 'Agrega Subsidiaries' };
+      //       // res.render('Configurations/config-update-subsidiaries');
+      // });
+      app.post('/config-update-users/', isUserAllowed, user_instance_controller.user_update_post) 
+      // app.post('/config-update-users/', isUserAllowed, function (req, res) {
+      //       res.locals = { title: 'Users' };
+      //       updateUser(req)
+      //             .then((subsidiaries) => {
+      //                   console.log("update users ok")
+      //                   // res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
+      //             })
+      //             .catch((err) => {
+      //                   console.log("error al guardar users");
+      //             });
+      //       console.log(JSON.stringify(req.body));
+      //       getUsers(req.body)
+      //             .then((usrs) => {
+      //                   res.render('Configurations/config-users', { "users": usrs });
+      //             })
+      //             .catch((err) => {
+      //                   console.log(JSON.stringify('users'+err));
+      //             });
+      // }); 
       // programs  ?
       app.get('/config-programs', isUserAllowed, function (req, res) {
             res.locals = { title: 'Configurarion Programs' };
