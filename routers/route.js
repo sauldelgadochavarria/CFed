@@ -14,6 +14,7 @@ const fs = require('fs');
 var subsidiaries = require('../models/subsidiaries.js');
 var permisos = require('../models/permisions.js');
 var users = require('../models/User.js');
+// var usersSchema = require('../models/User.js');
 // const ingreso = mongoose.model( subsidiaries);
 // nuevo conecta a bd
 // var User = require('../models/User')
@@ -130,8 +131,8 @@ module.exports = function (app) {
       async function setUser(req) {
             try {
                   // console.log(req.body)
-                  const myusr = users.model('users', users);
-                  const nuser = new myusr(req.body);
+                  // const myusr = users.model('users', users);
+                  const nuser = new users(req.body);
                   await nuser.save();
             } catch (err) {
                   console.error(err);
@@ -642,13 +643,20 @@ module.exports = function (app) {
       });
       app.get('/config-add-users', isUserAllowed, function (req, res) {
             res.locals = { title: 'Agrega Usuario' };
-            res.render('Configurations/config-add-users', { "permisos": permisos });
+            genSubsidiaries(req.body)
+                  .then((subsidiaries) => {
+                        res.render('Configurations/config-add-users', { "permisos": permisos, "subsidiaries": subsidiaries });
+                  })
+                  .catch((err) => {
+                        console.log(JSON.stringify('pagosvacio'));
+                  });
+            // res.render('Configurations/config-add-users', { "permisos": permisos,  });
       });
       app.post('/config-add-users/', isUserAllowed, function (req, res) {
             res.locals = { title: 'Users' };
             setUser(req)
                   .then((subsidiaries) => {
-                        console.log("ok")
+                        console.log("ok alta correctoa")
                         // res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
                         getUsers(req.body)
                               .then((subsidiaries) => {

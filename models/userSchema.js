@@ -26,8 +26,8 @@ const userSchema = new Schema({
     enum: ['Male', 'Female'],
   },
   roles: {
-    type: Array,
-    of: Object
+    type: Map,
+    of: String
   },
   email: {
     type: String,
@@ -43,3 +43,9 @@ userSchema.plugin(passportLocalMongoose, {  usernameField : 'email' });
 var User = mongoose.model('User', userSchema);
 // User.plugin(passportLocalMongoose);
 module.exports = User
+
+// userSchema.plugin(passportLocalMongoose, {  usernameField : 'email' });
+// var subsidiary = mongoose.model('subsidiaries', subsidiarySchema);
+// User.plugin(passportLocalMongoose);
+// module.exports = subsidiary
+// module.exports = { userschema: userSchema  }

@@ -41,12 +41,12 @@
                         <div class="card-body">
                             <h4 class="card-title">Alta de usuarios</h4>
                             <p class="card-title-desc">Ingrese información.</p>
-                            <!-- <form class="needs-validation" novalidate> -->
+                            <form class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="validationCustom01">Nombre</label>
-                                            <input type="text" class="form-control" id="validationNombre"
+                                            <input type="text" class="form-control" id="validationCustom01"
                                                 placeholder="Nombre" value="" required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -57,7 +57,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="validationCustom02">Apellido Paterno</label>
-                                            <input type="text" class="form-control" id="validationPaterno"
+                                            <input type="text" class="form-control" id="validationCustom02"
                                                 placeholder="Apellido Paterno" value="" required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -67,7 +67,7 @@
                                     <div class="col-md-6">
                                         <div class="col-md-3">
                                             <label class="form-label"> Apellido Materno</label>
-                                            <input type="text" class="form-control" id="validationMaterno"
+                                            <input type="text" class="form-control" id="validationCustom03"
                                                 placeholder="Apellido Materno" value="" required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -78,7 +78,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="validationCustom02">Usuario</label>
-                                            <input type="text" class="form-control" id="validationUsuario"
+                                            <input type="text" class="form-control" id="validationCustom04"
                                                 placeholder="Usuario" value="" required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -90,7 +90,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label" for="validationCustom03">Password</label>
-                                            <input type="password" class="form-control" id="validationPsw1"
+                                            <input type="password" class="form-control" id="validationCustom05"
                                                 placeholder="Password" required>
                                             <div class="invalid-feedback">
                                                 Please provide a Password.
@@ -100,7 +100,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label" for="validationCustom04">Password</label>
-                                            <input type="password" class="form-control" id="validationPsw2"
+                                            <input type="password" class="form-control" id="validationCustom06"
                                                 placeholder="Password" required>
                                             <div class="invalid-Password">
                                                 Please provide a valid Password.
@@ -110,7 +110,7 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label class="form-label" for="validationCustom05">Correo</label>
-                                            <input type="email" class="form-control" id="validationEmail"
+                                            <input type="email" class="form-control" id="validationCustom07"
                                                 placeholder="Correo" required>
                                             <div class="invalid-feedback">
                                                 Please provide a valid email.
@@ -137,7 +137,7 @@
                                                             <tr>
                                                                 <th>ID</th>
                                                                 <th>Subsidiaria</th>
-                                                                <th>TipodeCFDI</th>
+                                                                <th>Tipo de CFDI</th>
                                                                 <th>Acciones</th>
                                                             </tr>
                                                         </thead>
@@ -165,8 +165,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" onclick="javascript: sendFormAddUsr()" class="btn btn-primary" type="submit">Guardar</button>
-                            <!-- </form> -->
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </form>
                         </div>
                     </div>
                     <!-- end card -->
@@ -217,73 +217,73 @@
                 <script type="text/javascript">
                     var $table = $('#permissiontbl')
 
-                    // $(function () {
+                    $(function () {
 
-                    //     var data = [
-                    //         {
-                    //             'id': 0,
-                    //             'subsidiaria': 'empresa 0',
-                    //             'tipoCFDI': 'Egres',
-                    //             // 'Gender': 'F',
-                    //             // 'CD': '0'
-                    //         },
-                    //         {
-                    //             'id': 1,
-                    //             'subsidiaria': 'empresa 1',
-                    //             'tipoCFDI': 'Ingreso',
-                    //             // 'Gender': 'G',
-                    //             // 'CD': '0'
-                    //         },
-                    //         {
-                    //             'id': 2,
-                    //             'subsidiaria': 'empresa 2',
-                    //             'tipoCFDI': 'Nomina',
-                    //             // 'tipoCFDI': 'F',
-                    //             // 'CD': '$0'
-                    //         },
-                    //         // {
-                    //         //     'id': 3,
-                    //         //     'subsidiaria': 'Item 3',
-                    //         //     'Age': '0',
-                    //         //     'Gender': 'M',
-                    //         //     'CD': '0'
-                    //         // },
-                    //         // {
-                    //         //     'id': 4,
-                    //         //     'subsidiaria': 'Item 4',
-                    //         //     'Age': '$0',
-                    //         //     'Gender': 'F',
-                    //         //     'CD': '0'
-                    //         // },
-                    //         // {
-                    //         //     'id': 5,
-                    //         //     'subsidiaria': 'Item 5',
-                    //         //     'Age': '5',
-                    //         //     'Gender': 'M',
-                    //         //     'CD': '0'
-                    //         // }
-                    //     ]
-                    //     // $table.bootstrapTable({ data: data })
-                    //     var t = "";
-                    //     for (var i = 0; i < data.length; i++) {
-                    //         // console.log(JSON.stringify(data[i]));
-                    //         var tr = "<tr>";
-                    //         tr += "<td>" + data[i].id + "</td>";
-                    //         tr += "<td>" + data[i].subsidiaria + "</td>";
-                    //         tr += "<td>" + data[i].tipoCFDI + "</td>";
-                    //         // tr += "<td>" + data[i][3] + "</td>";
-                    //         // tr += "<td>" + '   <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>';
-                    //         // tr += ' <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>';
-                    //         tr +="<td>" +'<a class="btn btn-outline-secondary btn-sm add" data-toggle="tooltip"  title="Ok"> <i class="fas fa-check"></i> </a>';
-                    //         tr +='<a class="btn btn-outline-secondary btn-sm edit"  title="Edit"> <i class="fas fa-pencil-alt"></i> </a>';
-                    //         tr +='<a class="btn btn-outline-secondary btn-sm delete"  title="Delete"> <i class="fas fa-trash"></i> </a>';
-                    //         tr +="</td>" 
-                    //         // tr += '<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>"';
-                    //         tr += "</tr>";
-                    //         t += tr;
-                    //     }
-                    //     document.getElementById("permissiontbl").innerHTML += t;
-                    // })
+                        var data = [
+                            {
+                                'id': 0,
+                                'subsidiaria': 'empresa 0',
+                                'tipoCFDI': 'Egres',
+                                // 'Gender': 'F',
+                                // 'CD': '0'
+                            },
+                            {
+                                'id': 1,
+                                'subsidiaria': 'empresa 1',
+                                'tipoCFDI': 'Ingreso',
+                                // 'Gender': 'G',
+                                // 'CD': '0'
+                            },
+                            {
+                                'id': 2,
+                                'subsidiaria': 'empresa 2',
+                                'tipoCFDI': 'Nomina',
+                                // 'tipoCFDI': 'F',
+                                // 'CD': '$0'
+                            },
+                            // {
+                            //     'id': 3,
+                            //     'subsidiaria': 'Item 3',
+                            //     'Age': '0',
+                            //     'Gender': 'M',
+                            //     'CD': '0'
+                            // },
+                            // {
+                            //     'id': 4,
+                            //     'subsidiaria': 'Item 4',
+                            //     'Age': '$0',
+                            //     'Gender': 'F',
+                            //     'CD': '0'
+                            // },
+                            // {
+                            //     'id': 5,
+                            //     'subsidiaria': 'Item 5',
+                            //     'Age': '5',
+                            //     'Gender': 'M',
+                            //     'CD': '0'
+                            // }
+                        ]
+                        // $table.bootstrapTable({ data: data })
+                        var t = "";
+                        for (var i = 0; i < data.length; i++) {
+                            // console.log(JSON.stringify(data[i]));
+                            var tr = "<tr>";
+                            tr += "<td>" + data[i].id + "</td>";
+                            tr += "<td>" + data[i].subsidiaria + "</td>";
+                            tr += "<td>" + data[i].tipoCFDI + "</td>";
+                            // tr += "<td>" + data[i][3] + "</td>";
+                            // tr += "<td>" + '   <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>';
+                            // tr += ' <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>';
+                            tr +="<td>" +'<a class="btn btn-outline-secondary btn-sm add" data-toggle="tooltip"  title="Ok"> <i class="fas fa-check"></i> </a>';
+                            tr +='<a class="btn btn-outline-secondary btn-sm edit"  title="Edit"> <i class="fas fa-pencil-alt"></i> </a>';
+                            tr +='<a class="btn btn-outline-secondary btn-sm delete"  title="Delete"> <i class="fas fa-trash"></i> </a>';
+                            tr +="</td>" 
+                            // tr += '<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>"';
+                            tr += "</tr>";
+                            t += tr;
+                        }
+                        document.getElementById("permissiontbl").innerHTML += t;
+                    })
 
                     $(document).ready(function () {
                         $('[data-toggle="tooltip"]').tooltip();
@@ -297,7 +297,7 @@
                         $(".add-new").click(function () {
                             $(this).attr("disabled", "disabled");
                             console.log("Add new")
-                            var index = $("#permissiontbl tr:last-child").index();
+                            var index = $("table tbody tr:last-child").index();
                             console.log("Add new index:"+index)
                             var row = '<tr>' +
                                 '<td><input type="text" class="form-control" name="id" id="id-n"></td>' +
@@ -306,15 +306,9 @@
                                 '<td>' + actions + '</td>' +
                                 '</tr>';
                             console.log("Add new row:"+row)
-                            $("#permissiontbl tr:last").after(row);		
+                            $("table tr:last").after(row);		
                             // $("table").find('tbody').append(row);
-                            var newindex = $("#permissiontbl tr:last").index();
-                            if (index<0) {
-                                console.log("Add new row index <0 newindex"+newindex)
-                                $("#permissiontbl tr").eq(newindex).find(".delete, .edit, .add ").toggle();
-                            } else {
-		                    $("#permissiontbl tr").eq(newindex).find(".add, .edit ").toggle();
-                            }
+		                    $("table tbody tr").eq(index+1).find(".add, .edit ").toggle();
 
                             $('[data-toggle="tooltip"]').tooltip();
                         });
@@ -359,139 +353,11 @@
                     });
                 </script>
 
-                <script type="text/javascript">
-
-                function sendFormAddUsr() {
-                        // (B1) FORM DATA - AUTO GET ALL FIELDS FROM "#DEMOA"
-                        // event.preventDefault()
-                        console.log("entrando a sendfrm");
-                        var index = $("#permissiontbl tr:last-child").index();
-                        if (index<0) {
-                            alert("Ingrese permisos");
-                            return false;
-                        }
-                        // var _id = document.getElementById("subsidiaryid").value;
-                        var validationNombre = document.getElementById("validationNombre").value;
-                        var validationPaterno = document.getElementById("validationPaterno").value;
-                        var validationMaterno = document.getElementById("validationMaterno").value;
-                        var validationUsuario = document.getElementById("validationUsuario").value;
-                        var validationEmail = document.getElementById("validationEmail").value;
-                        var validationPsw1 = document.getElementById("validationPsw1").value;
-
-                        // TODO Leer permisos y asignarlos a un array :)
-                        var permisions = readTableData();
-                        // delete permisions.Acciones
-
-                        // console.log('permisions:' + permisions)
- 
-                        var params = {}
-                        // params._id = _id;
-                        params.firstName =validationNombre;
-                        params.lastName =validationPaterno;
-                        params.lastName +=' '+validationMaterno;
-                        params.userName =validationUsuario;
-                        params.email =validationEmail;
-                        params.password =validationPsw1;
-                        params.roles = permisions;
-                        jsonDato = JSON.stringify(params);
-                        console.log('enviado:'+jsonDato);
-                        // (B2) AJAX FETCH
-                        fetch("/config-add-users", {
-                            method: "post",
-                            // redirect: 'follow',
-                            // mode: 'no-cors',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            }, body: jsonDato
-                        })
-                        .then(async (response) => {
-                // HTTP 301 response
-                            var data =await response.json();
-                        console.log('respuesta:'+data.respuesta);
-                        if (data.respuesta =='ok') {
-                            setTimeout( function ( ) { alert( "alta exitosa" ); }, 1000 )
-                            window.location.href = "/config-users";
-                        }
-                        // HOW CAN I FOLLOW THE HTTP REDIRECT RESPONSE?
-                        // if (response.redirected) {
-                        //     window.location.href = response.url;
-                        // }
-                    })
-                            // .then(res => res.text()).then(htmlStr => {
-                            //     //  .then(res => res.json()).then(json => {
-                            //     // document.open();
-                            //     // document.write(htmlStr);
-                            //     // document.close();
-                            //     console.log('POST res ui:'+json)
-                            //     window.location.href = data.redirect;
-                            //     // if ( response.redirected) {
-                            //     // window.location.href = response.url;
-                            //     // return;
-                            //     // }
-                            //     // window.location.href = "http://localhost/config-subsidiaries";
-                            // })//
-                            // .then(txt => console.log(txt))
-                            // .catch(err => console.error(err));
-
-                        // (B3) PREVENT DEFAULT FORM SUBMIT
-                        return false;
-                    }
-     
-                /* This method will read the table data in json format */
-                function readTableData(){
-                    
-                    //gets table
-                    var eTable = document.getElementById('permissiontbl');
-            
-                    //gets rows of table
-                    var rowLength = eTable.rows.length;
-                    
-                    var totalEmp = [];
-                    var headers = [];
-            
-                    //loops through rows    
-                    for (i = 0; i < rowLength; i++){         
-                        
-                        //gets cells of current row
-                        var oCells = eTable.rows.item(i).cells;
-            
-                        //gets count of cells of current row
-                        var cellLength = oCells.length;
-            
-                        var rowData = {};
-            
-                        //loops through each cell in current row            
-                        for(var j = 0; j < cellLength; j++){
-                            if(i==0){
-                                //reading the table headers
-                                /* get your cell info here */
-                                var cellVal = oCells.item(j).innerHTML; 
-                                headers.push(cellVal);
-                            }else{
-                                //reading the table data
-                                var cellVal = oCells.item(j).innerHTML; 
-                                var headerName = headers[j];
-                                rowData[headerName] = cellVal;
-                            }
-                        
-                        }
-                        //skip adding first row (header row) to total record
-                        if(i!=0){
-                            delete rowData.Acciones
-                            totalEmp.push(rowData);
-                        }           
-                    }                 
-                    console.log(JSON.stringify(totalEmp))
-                    return totalEmp;
-                }
-
-                </script>
                 <style>
                     table.table td .add {
                         display: none;
                     }
                 </style>
-
 
                 <%- contentFor('BottomJs') %>
 

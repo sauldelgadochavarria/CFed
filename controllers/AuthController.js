@@ -107,8 +107,9 @@ module.exports = function (app) {
 
 	app.post('/post-login', urlencodeParser, async function (req, res) {
 		// app.post('/post-login', passport.authenticate('local'), async function (req, res) {
+		console.log('usr email:'+req.body.email);
 		const foundUser = await User.findOne ({ "email" : req.body.email}).exec();
-
+		console.log(JSON.stringify(foundUser));
 		const validUser = (foundUser.password == req.body.password);
 
 		console.log('usuario pedro:'+JSON.stringify(foundUser));
