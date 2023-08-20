@@ -3,16 +3,17 @@ var users = require('../models/User.js');
 var permisos = require('../models/permisions.js');
 
 // users
+exports.user_create_get = asyncHandler(async (req, res, next) => {
+      res.locals = { title: 'Agrega Usuario' };
+      res.render('Configurations/config-add-users',{ "permisos": permisos });
+    });
 exports.user_create_post = asyncHandler(async (req, res, next) => {
     res.locals = { title: 'Users' };
     setUser(req)
           .then((subsidiaries) => {
                 console.log("ok alta correctoa")
-                // res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
                 getUsers(req.body)
                       .then((subsidiaries) => {
-                            //      res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
-                            // res.redirect(302,'/config-subsidiaries');
                             var respuesta ='ok'
                             res.send({"respuesta":respuesta});
                       })
@@ -37,7 +38,6 @@ exports.user_create_post = asyncHandler(async (req, res, next) => {
           .catch((err) => {
                 console.log(JSON.stringify(' error getusers '));
           });
-
   });
 
   exports.user_update_get = asyncHandler(async (req, res, next) => {
@@ -48,7 +48,8 @@ exports.user_create_post = asyncHandler(async (req, res, next) => {
           .then((usrs) => {
                 console.log(usrs);
                 res.locals = { title: 'Edit Users' };
-                console.log("users a editar:"+JSON.stringify(usrs));
+                console.log("users a- editar:"+permisos);
+                console.log("users a- editar:"+JSON.stringify(permisos));
                 res.render('Configurations/config-update-users', { "user": usrs, "permisos": permisos });
           })
           .catch((err) => {
@@ -57,23 +58,26 @@ exports.user_create_post = asyncHandler(async (req, res, next) => {
 
   });
   exports.user_update_post = asyncHandler(async (req, res, next) => {
-            res.locals = { title: 'Users' };
+           
             updateUser(req)
-                  .then((subsidiaries) => {
-                        console.log("update users ok")
-                        // res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
+                  .then((updtresult) => {
+                        console.log("update users respuesta:"+updtresult);
+                        res.locals = { title: 'Users' };
+                        res.send({ "respuesta": updtresult });
+                        //  respuesta = 'ok'
+                        // getUsers()
+                        // .then((subsidiaries) => {
+                        //     var respuesta = 'ok'
+                        //     res.send({ "respuesta": respuesta });
+                        // })
+                        // .catch((err) => {
+                        //     console.log( err);
+                        // });
                   })
                   .catch((err) => {
-                        console.log("error al guardar users");
+                        console.log("error al guardar users"+err);
                   });
             console.log(JSON.stringify(req.body));
-            getUsers(req.body)
-                  .then((usrs) => {
-                        res.render('Configurations/config-users', { "users": usrs });
-                  })
-                  .catch((err) => {
-                        console.log(JSON.stringify('users'+err));
-                  });
 
   });
 
@@ -130,17 +134,12 @@ async function getUsers(req) {
                           datos,
                     );
                     console.log('new udtresult:' + updatedResult);
+                    return 'ok'
+
               } catch (error) {
                     console.log(error);
               }
 
-              console.log("Saliendo de a upd:" + updatedResult)
-              return updatedResult
-              // var datos = req.body;
-              // delete  datos._id
-              // const mysub = mongoose.model('subsidiaries', subsidiaries.subsidiary);
-              // var doc =  mysub.findByIdAndUpdate(req.body._id, req.body)
-              // await doc.save();
         } catch (err) {
               console.error(err);
               return [];

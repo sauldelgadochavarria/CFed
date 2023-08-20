@@ -46,7 +46,7 @@
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="validationCustom01">id</label>
-                                            <input type="text" class="form-control" id="validationNombre"
+                                            <input type="text" class="form-control" id="validationuserid"
                                                 placeholder="Nombre"  value=<%=user._id %> required>
                                             <div class="valid-feedback">
                                                 Looks good!
@@ -76,7 +76,7 @@
                                         <div class="col-md-3">
                                             <label class="form-label"> Apellido Materno</label>
                                             <input type="text" class="form-control" id="validationMaterno"
-                                                placeholder="Apellido Materno" <%=user.lastName %> required>
+                                                placeholder="Apellido Materno" value= <%=user.lastName %> required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -87,7 +87,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="validationCustom02">Usuario</label>
                                             <input type="text" class="form-control" id="validationUsuario"
-                                                placeholder="Usuario" <%=user.userName %>  required>
+                                                placeholder="Usuario" value=<%=user.userName %>  required>
                                             <div class="valid-feedback">
                                                 Looks good!
                                             </div>
@@ -99,7 +99,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="validationCustom03">Password</label>
                                             <input type="password" class="form-control" id="validationPsw1"
-                                                placeholder="Password" <%=user.password %> required>
+                                                placeholder="Password" value=<%=user.password %> required>
                                             <div class="invalid-feedback">
                                                 Please provide a Password.
                                             </div>
@@ -109,7 +109,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="validationCustom04">Password</label>
                                             <input type="password" class="form-control" id="validationPsw2"
-                                                placeholder="Password" <%=user.password %>  required>
+                                                placeholder="Password" value=<%=user.password %>  required>
                                             <div class="invalid-Password">
                                                 Please provide a valid Password.
                                             </div>
@@ -119,7 +119,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="validationCustom05">Correo</label>
                                             <input type="email" class="form-control" id="validationEmail"
-                                                placeholder="Correo" <%=user.email %>  required>
+                                                placeholder="Correo" value=<%=user.email %>  required>
                                             <div class="invalid-feedback">
                                                 Please provide a valid email.
                                             </div>
@@ -226,7 +226,11 @@
                     var $table = $('#permissiontbl')
 
                     $(function () {
-                        var data = '<%= user.roles%>';
+                       
+                        var data = getRole()
+                        // console.log('jdata:');
+                        // var data = JSON.parse(jdata);
+                        // console.log('jsndata:'+JSON.stringify(jdata));
                     //     var data = [
                     //         {
                     //             'id': 0,
@@ -273,15 +277,31 @@
                     //     ]
                         // $table.bootstrapTable({ data: data })
                         var t = "";
+
                         for (var i = 0; i < data.length; i++) {
                             // console.log(JSON.stringify(data[i]));
                             var tr = "<tr>";
-                            tr += "<td>" + data[i].id + "</td>";
-                            tr += "<td>" + data[i].subsidiaria + "</td>";
-                            tr += "<td>" + data[i].tipoCFDI + "</td>";
-                            // tr += "<td>" + data[i][3] + "</td>";
-                            // tr += "<td>" + '   <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>';
-                            // tr += ' <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>';
+                            tr += "<td>" + data[i].ID + "</td>";
+                            tr += "<td>" + data[i].Subsidiaria + "</td>";
+                            // tr += "<td>" + data[i].TipodeCFDI + "</td>";
+                            // <div class="col-md-3">
+                                tr += "<td>" ;
+                                    tr +=   '     <select id="regimen" class="form-select" required>' 
+
+                                            <%  for ( var i=0; i < permisos.length; i++ ) { 
+                                                // var selected=(
+                                                // regimen[i].clave== subsidiary.regimen) ? "selected" : "" ; %>
+                                                tr +=' <option value=';
+                                                tr +=   <%=permisos[i].id %> +">"
+                                                tr +=  "<%=permisos[i].value %>"
+                                                tr +=  ' </option>'
+                                            <% }
+                                         %>
+
+                                  tr+=' </select>' + "</td>";   
+                            console.log('renglon'+tr);
+                            // </div>
+
                             tr +="<td>" +'<a class="btn btn-outline-secondary btn-sm add" data-toggle="tooltip"  title="Ok"> <i class="fas fa-check"></i> </a>';
                             tr +='<a class="btn btn-outline-secondary btn-sm edit"  title="Edit"> <i class="fas fa-pencil-alt"></i> </a>';
                             tr +='<a class="btn btn-outline-secondary btn-sm delete"  title="Delete"> <i class="fas fa-trash"></i> </a>';
@@ -378,7 +398,7 @@
                             alert("Ingrese permisos");
                             return false;
                         }
-                        // var _id = document.getElementById("subsidiaryid").value;
+                         var _id = document.getElementById("validationuserid").value;
                         var validationNombre = document.getElementById("validationNombre").value;
                         var validationPaterno = document.getElementById("validationPaterno").value;
                         var validationMaterno = document.getElementById("validationMaterno").value;
@@ -388,12 +408,12 @@
 
                         // TODO Leer permisos y asignarlos a un array :)
                         var permisions = readTableData();
-                        // delete permisions.Acciones
+                        
 
-                        // console.log('permisions:' + permisions)
+                        console.log('permisions:' + JSON.stringify(permisions));
  
                         var params = {}
-                        // params._id = _id;
+                        params._id = _id;
                         params.firstName =validationNombre;
                         params.lastName =validationPaterno;
                         params.lastName +=' '+validationMaterno;
@@ -404,7 +424,7 @@
                         jsonDato = JSON.stringify(params);
                         console.log('enviado:'+jsonDato);
                         // (B2) AJAX FETCH
-                        fetch("/config-add-users", {
+                        fetch("/config-update-users", {
                             method: "post",
                             // redirect: 'follow',
                             // mode: 'no-cors',
@@ -414,10 +434,10 @@
                         })
                         .then(async (response) => {
                 // HTTP 301 response
-                            var data =await response.json();
+                       var data =await response.json();
                         console.log('respuesta:'+data.respuesta);
                         if (data.respuesta =='ok') {
-                            setTimeout( function ( ) { alert( "alta exitosa" ); }, 1000 )
+                            setTimeout( function ( ) { alert( "Actualizacion exitosa" ); }, 1000 )
                             window.location.href = "/config-users";
                         }
                         // HOW CAN I FOLLOW THE HTTP REDIRECT RESPONSE?
@@ -493,6 +513,14 @@
                     return totalEmp;
                 }
 
+                </script>
+                <script>
+                    function getRole(){
+                        var jmyroles = <%-JSON.stringify(user.roles)%>
+                        // var myroles = JSON.parse(jmyroles);
+                        // console.log('myrtoles:'+jmyroles[0].Subsidiaria);
+                        return jmyroles
+                    }
                 </script>
                 <style>
                     table.table td .add {

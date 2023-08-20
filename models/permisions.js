@@ -19,5 +19,5 @@ var permisos =[
         "id": "5",
         "value": "admin"
     }
-]
-module.export =permisos
+];
+module.exports = permisos

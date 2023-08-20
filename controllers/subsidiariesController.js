@@ -34,6 +34,15 @@ exports.subsidiary_create_post = asyncHandler(async (req, res, next) => {
 
 exports.subsidiary_getsubsidiaries_get = asyncHandler(async (req, res, next) => {
     res.locals = { title: 'Subsidiaries' };
+    sess = req.session;
+    console.log('sesion getsubsidiaries:'+JSON.stringify(req.session));
+    var isrolevalid =validateRole(sess, 'subsidiary_getsubsidiaries_get');
+    console.log('isrolevalid:'+isrolevalid);
+    isrolevalid = true;
+    if (!isrolevalid){
+        res.locals = { title: 'Error 404 Sin Permiso' };
+		res.redirect('/');
+    } else{
     getSubsidiaries(req.body)
         .then((subsidiaries) => {
             console.log('subsidiaries: ' + subsidiaries.length);
@@ -43,7 +52,7 @@ exports.subsidiary_getsubsidiaries_get = asyncHandler(async (req, res, next) => 
         .catch((err) => {
             console.log(JSON.stringify('pagosvacio'));
         });
-
+    }
 });
 
 exports.subsidiary_updatesubsidiaries_get = asyncHandler(async (req, res, next) => {
@@ -64,20 +73,22 @@ exports.subsidiary_updatesubsidiaries_get = asyncHandler(async (req, res, next) 
 });
 exports.subsidiary_updatesubsidiaries_post = asyncHandler(async (req, res, next) => {
     res.locals = { title: 'Subsidiaries' };
+
     console.log("entrando update subsidiary ")
     updateSubsidiary(req)
         .then((subsidiaries) => {
-            console.log("update ok")
-            getSubsidiaries(req.body)
-            .then((subsidiaries) => {
-                //      res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
-                // res.redirect(302,'/config-subsidiaries');
-                var respuesta = 'ok'
-                res.send({ "respuesta": respuesta });
-            })
-            .catch((err) => {
-                console.log(JSON.stringify('getSubsidiaries' + err));
-            });
+            console.log("update ok:"+subsidiaries)
+            res.send({ "respuesta": subsidiaries });
+            // getSubsidiaries(req.body)
+            // .then((subsidiaries) => {
+            //     //      res.render('Configurations/config-subsidiaries', { "subsidiaries": subsidiaries });
+            //     // res.redirect(302,'/config-subsidiaries');
+            //     var respuesta = 'ok'
+            //     res.send({ "respuesta": respuesta });
+            // })
+            // .catch((err) => {
+            //     console.log(JSON.stringify('getSubsidiaries' + err));
+            // });
         })
         .catch((err) => {
             console.log("error al guardar subsidiaries");
@@ -145,6 +156,25 @@ async function updateSubsidiary(req) {
     }
 }
 
+function validateRole(sess, registro){
+    var roles = sess.roles;
+    var rolesPermited = getPermitedRoles(registro)
+    var permitido = false;
+    for (var i = 0; i < rolesPermited.length; i++) {
+        for (var j = 0; j < roles.length; j++) {
+            if (rolesPermited[i]== roles[j].TipodeCFDI) {
+                permitido =true;
+                break;
+            } 
+           
+        }
+    }
+    return permitido
+}
+
+function getPermitedRoles(registro){
+    return ['xactura', 'SUPERVISOR']
+}
 
 
 

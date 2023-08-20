@@ -71,7 +71,7 @@ module.exports = function (app) {
 		res.render('Pages/pages-comingsoon');
 	});
 	app.get('/pages-404', function (req, res) {
-		res.locals = { title: 'Error 404' };
+		res.locals = { title: 'Error 404 Sin Permiso' };
 		res.render('Pages/pages-404');
 	});
 	app.get('/pages-500', function (req, res) {

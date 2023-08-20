@@ -626,6 +626,7 @@ module.exports = function (app) {
       //             });
       //       // res.render('Configurations/config-add-users', { "permisos": permisos,  });
       // });
+      app.get('/config-add-users',isUserAllowed, user_instance_controller.user_create_get) ;
       app.post('/config-add-users',isUserAllowed, user_instance_controller.user_create_post) ;
       app.get('/config-update-users', isUserAllowed, user_instance_controller.user_update_get);
       // app.get('/config-update-users', isUserAllowed, function (req, res) {
