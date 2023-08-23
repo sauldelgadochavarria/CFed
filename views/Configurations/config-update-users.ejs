@@ -282,11 +282,28 @@
                             // console.log(JSON.stringify(data[i]));
                             var tr = "<tr>";
                             tr += "<td>" + data[i].ID + "</td>";
-                            tr += "<td>" + data[i].Subsidiaria + "</td>";
+                            // tr += "<td>" + data[i].Subsidiaria + "</td>";
+                                // escribe subsidiarias
+                                tr += "<td>" ;
+                                    tr +=   '     <select  id=subsidiary'+i+' class="form-select" required>' 
+
+                                            <%  for ( var i=0; i < subsidiarias.length; i++ ) { 
+                                                // var selected=(
+                                                // regimen[i].clave== subsidiary.regimen) ? "selected" : "" ; %>
+                                                tr +=' <option value=';
+                                                tr +=   <%=subsidiarias[i].id %> +">"
+                                                tr +=  "<%=subsidiarias[i].razonSocial %>"
+                                                tr +=  ' </option>'
+                                            <% }
+                                         %>
+
+                                  tr+=' </select>' + "</td>";   
+
                             // tr += "<td>" + data[i].TipodeCFDI + "</td>";
                             // <div class="col-md-3">
+                                // escribe permisos
                                 tr += "<td>" ;
-                                    tr +=   '     <select id="regimen" class="form-select" required>' 
+                                    tr +=   '     <select  id=permision'+i+' class="form-select" required>' 
 
                                             <%  for ( var i=0; i < permisos.length; i++ ) { 
                                                 // var selected=(
@@ -438,7 +455,7 @@
                         console.log('respuesta:'+data.respuesta);
                         if (data.respuesta =='ok') {
                             setTimeout( function ( ) { alert( "Actualizacion exitosa" ); }, 1000 )
-                            window.location.href = "/config-users";
+                            // window.location.href = "/config-users";
                         }
                         // HOW CAN I FOLLOW THE HTTP REDIRECT RESPONSE?
                         // if (response.redirected) {
@@ -482,32 +499,49 @@
                         
                         //gets cells of current row
                         var oCells = eTable.rows.item(i).cells;
-            
+                        var mysubs = getSubs();
+                        // var mypermisos = <%-JSON.stringify(permisos)%>;
+                        
                         //gets count of cells of current row
                         var cellLength = oCells.length;
             
                         var rowData = {};
-            
-                        //loops through each cell in current row            
-                        for(var j = 0; j < cellLength; j++){
+                        var cellVal ;
+                        var headerName =''
+                        var idx=i-1;
                             if(i==0){
                                 //reading the table headers
                                 /* get your cell info here */
-                                var cellVal = oCells.item(j).innerHTML; 
+                                var cellVal = oCells.item(0).innerHTML; 
+                                headers.push(cellVal);
+                                cellVal = oCells.item(1).innerHTML; 
+                                headers.push(cellVal);
+                                cellVal = oCells.item(2).innerHTML; 
                                 headers.push(cellVal);
                             }else{
                                 //reading the table data
-                                var cellVal = oCells.item(j).innerHTML; 
-                                var headerName = headers[j];
+                                
+                                 headerName = headers[0];
+                                 cellVal =oCells.item(0).innerHTML; 
                                 rowData[headerName] = cellVal;
+
+                                headerName = headers[1];
+                                var celSelect =document.getElementById('subsidiary'+idx); 
+                                // var subselected = findInList(idx, mysubs)
+                                cellVal =celSelect.value;
+                                console.log('selected subsidiaria:'+cellVal)
+                                rowData[headerName] = mysubs[cellVal]._id;
+
+                                headerName = headers[2];
+                                var celSelect2 =document.getElementById('permision'+idx); 
+                                // var permisionselected = findInList(idx, mysubs)
+                                cellVal =celSelect2.value;
+                                rowData[headerName] = cellVal;
+                                console.log(JSON.stringify(rowData));
+                                totalEmp.push(rowData);
                             }
                         
-                        }
-                        //skip adding first row (header row) to total record
-                        if(i!=0){
-                            delete rowData.Acciones
-                            totalEmp.push(rowData);
-                        }           
+      
                     }                 
                     console.log(JSON.stringify(totalEmp))
                     return totalEmp;
@@ -520,6 +554,12 @@
                         // var myroles = JSON.parse(jmyroles);
                         // console.log('myrtoles:'+jmyroles[0].Subsidiaria);
                         return jmyroles
+                    }
+                    function getSubs(){
+                        var mysubs = <%-JSON.stringify(subsidiarias)%>;
+                        // var myroles = JSON.parse(jmyroles);
+                         console.log('getSubs:'+mysubs[0]._id);
+                        return mysubs
                     }
                 </script>
                 <style>
