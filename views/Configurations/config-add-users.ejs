@@ -176,114 +176,12 @@
             <!-- end row -->
 
 
-            <!-- Modal -->
-            <!-- <div class="modal fade" id="composemodal" tabindex="-1" role="dialog" aria-labelledby="composemodalTitle"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="composemodalTitle">New Message</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="mb-3">
-                                    <input type="email" class="form-control" placeholder="To">
-                                </div>
-
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" placeholder="Subject">
-                                </div>
-                                <div class="mb-3">
-                                    <form method="post">
-                                        <textarea id="email-editor" name="area"></textarea>
-                                    </form>
-                                </div>
-
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Send <i
-                                    class="fab fa-telegram-plane ms-1"></i></button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
             <%- contentFor('FooterJs') %>
 
                 <script type="text/javascript">
                     var $table = $('#permissiontbl')
 
-                    // $(function () {
 
-                    //     var data = [
-                    //         {
-                    //             'id': 0,
-                    //             'subsidiaria': 'empresa 0',
-                    //             'tipoCFDI': 'Egres',
-                    //             // 'Gender': 'F',
-                    //             // 'CD': '0'
-                    //         },
-                    //         {
-                    //             'id': 1,
-                    //             'subsidiaria': 'empresa 1',
-                    //             'tipoCFDI': 'Ingreso',
-                    //             // 'Gender': 'G',
-                    //             // 'CD': '0'
-                    //         },
-                    //         {
-                    //             'id': 2,
-                    //             'subsidiaria': 'empresa 2',
-                    //             'tipoCFDI': 'Nomina',
-                    //             // 'tipoCFDI': 'F',
-                    //             // 'CD': '$0'
-                    //         },
-                    //         // {
-                    //         //     'id': 3,
-                    //         //     'subsidiaria': 'Item 3',
-                    //         //     'Age': '0',
-                    //         //     'Gender': 'M',
-                    //         //     'CD': '0'
-                    //         // },
-                    //         // {
-                    //         //     'id': 4,
-                    //         //     'subsidiaria': 'Item 4',
-                    //         //     'Age': '$0',
-                    //         //     'Gender': 'F',
-                    //         //     'CD': '0'
-                    //         // },
-                    //         // {
-                    //         //     'id': 5,
-                    //         //     'subsidiaria': 'Item 5',
-                    //         //     'Age': '5',
-                    //         //     'Gender': 'M',
-                    //         //     'CD': '0'
-                    //         // }
-                    //     ]
-                    //     // $table.bootstrapTable({ data: data })
-                    //     var t = "";
-                    //     for (var i = 0; i < data.length; i++) {
-                    //         // console.log(JSON.stringify(data[i]));
-                    //         var tr = "<tr>";
-                    //         tr += "<td>" + data[i].id + "</td>";
-                    //         tr += "<td>" + data[i].subsidiaria + "</td>";
-                    //         tr += "<td>" + data[i].tipoCFDI + "</td>";
-                    //         // tr += "<td>" + data[i][3] + "</td>";
-                    //         // tr += "<td>" + '   <a class="add" title="Add" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>';
-                    //         // tr += ' <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>';
-                    //         tr +="<td>" +'<a class="btn btn-outline-secondary btn-sm add" data-toggle="tooltip"  title="Ok"> <i class="fas fa-check"></i> </a>';
-                    //         tr +='<a class="btn btn-outline-secondary btn-sm edit"  title="Edit"> <i class="fas fa-pencil-alt"></i> </a>';
-                    //         tr +='<a class="btn btn-outline-secondary btn-sm delete"  title="Delete"> <i class="fas fa-trash"></i> </a>';
-                    //         tr +="</td>" 
-                    //         // tr += '<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>"';
-                    //         tr += "</tr>";
-                    //         t += tr;
-                    //     }
-                    //     document.getElementById("permissiontbl").innerHTML += t;
-                    // })
 
                     $(document).ready(function () {
                         $('[data-toggle="tooltip"]').tooltip();
@@ -295,16 +193,36 @@
 
                         // Append table with add row form on add new button click
                         $(".add-new").click(function () {
+                            console.log("Add new")
+
                             $(this).attr("disabled", "disabled");
                             console.log("Add new")
                             var index = $("#permissiontbl tr:last-child").index();
                             console.log("Add new index:"+index)
                             var row = '<tr>' +
                                 '<td><input type="text" class="form-control" name="id" id="id-n"></td>' +
-                                '<td><input type="text" class="form-control" name="subsidiary" id="_subsidiary-n"></td>' +
-                                '<td><input type="text" class="form-control" name="tipocfdi" id="tipocfdi-n"></td>' +
-                                '<td>' + actions + '</td>' +
-                                '</tr>';
+                                    row += "<td>" ;
+                                    row +=   '     <select  id=subsidiary'+index+' class="form-select" required>' 
+                                            <%  for ( var j=0; j < subsidiarias.length; j++ ) {  %>
+                                                    row +=' <option value=';
+                                                    row +=   <%=subsidiarias[j].id %> +">"
+                                                    row +=  "<%=subsidiarias[j].razonSocial %>"
+                                                    row +=  ' </option>'
+                                            <%}%>
+                                    row += ' </select>' + "</td>";  
+                                    row += "<td>" ;
+                                     row +=   '     <select  id=permision'+index+' class="form-select" required>'
+                                            <%  for ( var j=0; j < permisos.length; j++ ) {  %>
+                                                    row +=  ' <option value=';
+                                                    row +=   <%=permisos[j].id %> +">"
+                                                    row +=  "<%=permisos[j].value %>"
+                                                    row +=  ' </option>'
+                                            <%}%>
+                                    row+= ' </select>' + "</td>";  
+                                // '<td><input type="text" class="form-control" name="subsidiary" id="_subsidiary-n"></td>' +
+                                // '<td><input type="text" class="form-control" name="tipocfdi" id="tipocfdi-n"></td>' +
+                                row+= '<td>' + actions + '</td>' 
+                                row+= '</tr>';
                             console.log("Add new row:"+row)
                             $("#permissiontbl tr:last").after(row);		
                             // $("table").find('tbody').append(row);
