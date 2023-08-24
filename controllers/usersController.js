@@ -10,7 +10,10 @@ const mysub = mongoose.model('subsidiaries', subsidiaries.subsidiary);
 // users
 exports.user_create_get = asyncHandler(async (req, res, next) => {
       res.locals = { title: 'Agrega Usuario' };
-      res.render('Configurations/config-add-users', { "permisos": permisos });
+      getSubsidiaries().then((subs) => {
+            console.log("users a- editar subs:" + JSON.stringify(subs));
+            res.render('Configurations/config-add-users', { "permisos": permisos, "subsidiarias": subs });
+      });
 });
 exports.user_create_post = asyncHandler(async (req, res, next) => {
       res.locals = { title: 'Users' };

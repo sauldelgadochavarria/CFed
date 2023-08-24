@@ -278,24 +278,33 @@
                         // $table.bootstrapTable({ data: data })
                         var t = "";
 
-                        for (var i = 0; i < data.length; i++) {
+                        // for (var i = 0; i < data.length; i++) {
+
+                            <%  for ( var i=0; i < user.roles.length; i++ ) {  %>
+                            // user.roles
                             // console.log(JSON.stringify(data[i]));
                             var tr = "<tr>";
-                            tr += "<td>" + data[i].ID + "</td>";
+                            tr += "<td>" + <%=user.roles[i].ID %> + "</td>";
                             // tr += "<td>" + data[i].Subsidiaria + "</td>";
                                 // escribe subsidiarias
                                 tr += "<td>" ;
-                                    tr +=   '     <select  id=subsidiary'+i+' class="form-select" required>' 
+                                    tr +=   '     <select  id=subsidiary'+<%=i%>+' class="form-select" required>' 
 
-                                            <%  for ( var i=0; i < subsidiarias.length; i++ ) { 
-                                                // var selected=(
-                                                // regimen[i].clave== subsidiary.regimen) ? "selected" : "" ; %>
-                                                tr +=' <option value=';
-                                                tr +=   <%=subsidiarias[i].id %> +">"
-                                                tr +=  "<%=subsidiarias[i].razonSocial %>"
+                                            <%  for ( var j=0; j < subsidiarias.length; j++ ) {  %>
+
+                                                <% if (subsidiarias[j]._id == user.roles[i].Subsidiaria) { %>
+                                                    tr +=' <option value=';
+                                                    tr +=  <%=subsidiarias[j].id %> +' selected="selected">';
+                                                    tr +=  "<%=subsidiarias[j].razonSocial %>"
+                                                <%} else { %>
+                                                    tr +=' <option value=';
+                                                    tr +=   <%=subsidiarias[j].id %> +">"
+                                                    tr +=  "<%=subsidiarias[j].razonSocial %>"
+                                                <% } %>
+                                                
+                                                
                                                 tr +=  ' </option>'
-                                            <% }
-                                         %>
+                                            <%}%>
 
                                   tr+=' </select>' + "</td>";   
 
@@ -303,17 +312,23 @@
                             // <div class="col-md-3">
                                 // escribe permisos
                                 tr += "<td>" ;
-                                    tr +=   '     <select  id=permision'+i+' class="form-select" required>' 
+                                    tr +=   '     <select  id=permision'+<%=i%>+' class="form-select" required>' 
 
-                                            <%  for ( var i=0; i < permisos.length; i++ ) { 
+                                            <%  for ( var j=0; j < permisos.length; j++ ) { 
                                                 // var selected=(
                                                 // regimen[i].clave== subsidiary.regimen) ? "selected" : "" ; %>
-                                                tr +=' <option value=';
-                                                tr +=   <%=permisos[i].id %> +">"
-                                                tr +=  "<%=permisos[i].value %>"
-                                                tr +=  ' </option>'
-                                            <% }
-                                         %>
+                                                <% if (permisos[j].id == user.roles[i].TipodeCFDI) { %>
+                                                        tr +=' <option value=';
+                                                        tr +=   <%=permisos[j].id %> +' selected="selected">'
+                                                        tr +=  "<%=permisos[j].value %>"
+                                                        tr +=  ' </option>'
+                                                    <%} else { %>
+                                                        tr +=' <option value=';
+                                                        tr +=   <%=permisos[j].id %> +">"
+                                                        tr +=  "<%=permisos[j].value %>"
+                                                        tr +=  ' </option>'
+                                                <% } %>
+                                            <% } %>
 
                                   tr+=' </select>' + "</td>";   
                             console.log('renglon'+tr);
@@ -326,7 +341,8 @@
                             // tr += '<a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></td>"';
                             tr += "</tr>";
                             t += tr;
-                        }
+                        // }
+                        <%}%>
                         document.getElementById("permissiontbl").innerHTML += t;
                     })
 
